@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Timeline visible",
+    "summary": "Las herramientas que muestran secuencia temporal facilitan mucho retomar contexto.",
+    "tags": ["timeline", "ux"],
+    "topicHints": ["timeline", "contexto"],
+    "status": "validated"
+  },
+  {
+    "title": "Fuentes separadas",
+    "summary": "Separar fuentes de conclusiones reduce ruido y mejora auditabilidad.",
+    "tags": ["sources", "auditability"],
+    "topicHints": ["fuentes", "auditabilidad"],
+    "status": "active"
+  }
+]

@@ -1,0 +1,9 @@
+[
+  {
+    "title": "Definir panel lateral de linea",
+    "detail": "Recoger estrategia, fuentes y temas repetidos sin ocultar el timeline.",
+    "status": "pending",
+    "priority": "high",
+    "tags": ["ui", "navigation"]
+  }
+]

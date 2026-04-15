@@ -1,0 +1,11 @@
+{
+  "findings": [
+    {
+      "title": "Estado explicito",
+      "summary": "Distinguir entre activo, validado e incierto ayuda a filtrar ruido.",
+      "tags": ["status", "noise"],
+      "topicHints": ["estado", "ruido"],
+      "status": "validated"
+    }
+  ]
+}

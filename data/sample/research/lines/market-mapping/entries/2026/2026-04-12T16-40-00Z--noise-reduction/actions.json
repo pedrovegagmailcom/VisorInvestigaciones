@@ -1,0 +1,18 @@
+{
+  "actions": [
+    {
+      "title": "Añadir filtros por estado y prioridad",
+      "detail": "Aplicarlos al menos sobre lineas y entradas en la V1.",
+      "status": "in_progress",
+      "priority": "medium",
+      "tags": ["filters", "ui"]
+    },
+    {
+      "title": "Marcar temas repetidos",
+      "detail": "Empezar con heuristica por tokens compartidos antes de deduplicacion semantica avanzada.",
+      "status": "pending",
+      "priority": "medium",
+      "tags": ["topics", "heuristics"]
+    }
+  ]
+}

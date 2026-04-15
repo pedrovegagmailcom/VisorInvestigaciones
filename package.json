@@ -1,0 +1,23 @@
+{
+  "name": "visor-investigaciones",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "tools/indexer",
+    "web"
+  ],
+  "scripts": {
+    "index": "npm run -w @visor/indexer index",
+    "index:watch": "npm run -w @visor/indexer index:watch",
+    "index:check": "npm run -w @visor/indexer check",
+    "web": "npm run -w @visor/web dev",
+    "web:preview": "npm run -w @visor/web preview",
+    "build": "npm run index && npm run -w @visor/web build",
+    "check": "npm run index:check && npm run -w @visor/web build",
+    "dev": "concurrently \"npm run index:watch\" \"npm run web\"",
+    "dev:manual": "npm run index && npm run web"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}

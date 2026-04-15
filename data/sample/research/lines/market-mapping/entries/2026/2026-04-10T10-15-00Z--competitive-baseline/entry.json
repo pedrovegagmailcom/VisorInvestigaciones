@@ -1,0 +1,8 @@
+{
+  "title": "Competitive baseline",
+  "summary": "Primera pasada de competidores locales para entender como presentan timeline, fuentes y acciones.",
+  "timestamp": "2026-04-10T10:15:00Z",
+  "status": "active",
+  "priority": "high",
+  "tags": ["benchmark", "ui", "timeline"]
+}

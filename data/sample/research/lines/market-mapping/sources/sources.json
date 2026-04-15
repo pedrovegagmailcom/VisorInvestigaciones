@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Obsidian",
+    "url": "https://obsidian.md",
+    "kind": "document",
+    "tags": ["knowledge-base", "local-first"],
+    "note": "Referencia para exploracion de grafos y notas enlazadas."
+  },
+  {
+    "title": "Logseq",
+    "url": "https://logseq.com",
+    "kind": "document",
+    "tags": ["outliner", "local-first"],
+    "note": "Buena referencia para timeline y bloques enlazados."
+  }
+]

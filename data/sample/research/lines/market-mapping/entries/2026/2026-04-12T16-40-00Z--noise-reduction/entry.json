@@ -1,0 +1,8 @@
+{
+  "title": "Noise reduction",
+  "summary": "Revision enfocada en separar informacion util de ruido dentro del visor.",
+  "timestamp": "2026-04-12T16:40:00Z",
+  "status": "active",
+  "priority": "medium",
+  "tags": ["noise", "findings", "filters"]
+}

@@ -1,0 +1,2178 @@
+{
+  "generatedAt": "2026-04-15T17:28:12.471Z",
+  "sourcePath": "C:\\Users\\pedro\\git\\visor_researches\\VisorInvestigaciones\\data\\sample\\research",
+  "stats": {
+    "lineCount": 3,
+    "entryCount": 4,
+    "findingCount": 11,
+    "actionCount": 3,
+    "sourceCount": 8
+  },
+  "repeatedTopics": [
+    {
+      "id": "topic-estado",
+      "label": "Estado",
+      "normalizedLabel": "estado",
+      "occurrenceCount": 5,
+      "lineSlugs": [
+        "gemma-openclaw",
+        "market-mapping"
+      ],
+      "entryIds": [
+        "gemma-openclaw--legacy-snapshot",
+        "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+      ],
+      "references": [
+        {
+          "type": "finding",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+          "entityId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction--finding-1"
+        },
+        {
+          "type": "action",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+          "entityId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction--action-1"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+          "entityId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--finding-3"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-herramientas",
+      "label": "Herramientas",
+      "normalizedLabel": "herramientas",
+      "occurrenceCount": 5,
+      "lineSlugs": [
+        "gemma-domotica-openclaw",
+        "gemma-openclaw",
+        "market-mapping"
+      ],
+      "entryIds": [
+        "market-mapping--2026-04-10T10-15-00Z--competitive-baseline"
+      ],
+      "references": [
+        {
+          "type": "line",
+          "lineSlug": "market-mapping",
+          "entityId": "market-mapping"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+          "entityId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline--finding-1"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+          "entityId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline"
+        },
+        {
+          "type": "source",
+          "lineSlug": "gemma-openclaw",
+          "entityId": "gemma-openclaw--source-3"
+        },
+        {
+          "type": "line",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entityId": "gemma-domotica-openclaw"
+        }
+      ]
+    },
+    {
+      "id": "topic-repetidos",
+      "label": "Repetidos",
+      "normalizedLabel": "repetidos",
+      "occurrenceCount": 5,
+      "lineSlugs": [
+        "gemma-openclaw",
+        "market-mapping"
+      ],
+      "entryIds": [
+        "gemma-openclaw--legacy-snapshot",
+        "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+        "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+      ],
+      "references": [
+        {
+          "type": "line",
+          "lineSlug": "market-mapping",
+          "entityId": "market-mapping"
+        },
+        {
+          "type": "action",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+          "entityId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction--action-2"
+        },
+        {
+          "type": "action",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+          "entityId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline--action-1"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--finding-4"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-ruido",
+      "label": "Ruido",
+      "normalizedLabel": "ruido",
+      "occurrenceCount": 5,
+      "lineSlugs": [
+        "gemma-domotica-openclaw",
+        "market-mapping"
+      ],
+      "entryIds": [
+        "gemma-domotica-openclaw--legacy-snapshot",
+        "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+        "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+      ],
+      "references": [
+        {
+          "type": "finding",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+          "entityId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction--finding-1"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+          "entityId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline--finding-2"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+          "entityId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--finding-4"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-separar",
+      "label": "Separar",
+      "normalizedLabel": "separar",
+      "occurrenceCount": 5,
+      "lineSlugs": [
+        "gemma-domotica-openclaw",
+        "market-mapping"
+      ],
+      "entryIds": [
+        "gemma-domotica-openclaw--legacy-snapshot",
+        "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+        "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+      ],
+      "references": [
+        {
+          "type": "finding",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+          "entityId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline--finding-2"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+          "entityId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+          "entityId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--finding-4"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-timeline",
+      "label": "Timeline",
+      "normalizedLabel": "timeline",
+      "occurrenceCount": 5,
+      "lineSlugs": [
+        "gemma-openclaw",
+        "market-mapping"
+      ],
+      "entryIds": [
+        "market-mapping--2026-04-10T10-15-00Z--competitive-baseline"
+      ],
+      "references": [
+        {
+          "type": "source",
+          "lineSlug": "market-mapping",
+          "entityId": "market-mapping--source-2"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+          "entityId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline--finding-1"
+        },
+        {
+          "type": "action",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+          "entityId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline--action-1"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+          "entityId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline"
+        },
+        {
+          "type": "source",
+          "lineSlug": "gemma-openclaw",
+          "entityId": "gemma-openclaw--source-2"
+        }
+      ]
+    },
+    {
+      "id": "topic-inicial",
+      "label": "Inicial",
+      "normalizedLabel": "inicial",
+      "occurrenceCount": 4,
+      "lineSlugs": [
+        "gemma-openclaw",
+        "market-mapping"
+      ],
+      "entryIds": [
+        "gemma-openclaw--legacy-snapshot",
+        "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+        "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+      ],
+      "references": [
+        {
+          "type": "entry",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+          "entityId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+          "entityId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--finding-3"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-investigacion",
+      "label": "Investigacion",
+      "normalizedLabel": "investigacion",
+      "occurrenceCount": 4,
+      "lineSlugs": [
+        "gemma-domotica-openclaw",
+        "market-mapping"
+      ],
+      "entryIds": [
+        "gemma-domotica-openclaw--legacy-snapshot",
+        "market-mapping--2026-04-10T10-15-00Z--competitive-baseline"
+      ],
+      "references": [
+        {
+          "type": "line",
+          "lineSlug": "market-mapping",
+          "entityId": "market-mapping"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+          "entityId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--finding-2"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-temas",
+      "label": "Temas",
+      "normalizedLabel": "temas",
+      "occurrenceCount": 4,
+      "lineSlugs": [
+        "gemma-openclaw",
+        "market-mapping"
+      ],
+      "entryIds": [
+        "gemma-openclaw--legacy-snapshot",
+        "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+        "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+      ],
+      "references": [
+        {
+          "type": "action",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+          "entityId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction--action-2"
+        },
+        {
+          "type": "action",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+          "entityId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline--action-1"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--finding-4"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-temas repetidos",
+      "label": "Temas Repetidos",
+      "normalizedLabel": "temas repetidos",
+      "occurrenceCount": 4,
+      "lineSlugs": [
+        "gemma-openclaw",
+        "market-mapping"
+      ],
+      "entryIds": [
+        "gemma-openclaw--legacy-snapshot",
+        "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+        "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+      ],
+      "references": [
+        {
+          "type": "action",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+          "entityId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction--action-2"
+        },
+        {
+          "type": "action",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+          "entityId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline--action-1"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--finding-4"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-assistant",
+      "label": "Assistant",
+      "normalizedLabel": "assistant",
+      "occurrenceCount": 3,
+      "lineSlugs": [
+        "gemma-domotica-openclaw"
+      ],
+      "entryIds": [
+        "gemma-domotica-openclaw--legacy-snapshot"
+      ],
+      "references": [
+        {
+          "type": "source",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entityId": "gemma-domotica-openclaw--source-1"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--finding-1"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-aunque",
+      "label": "Aunque",
+      "normalizedLabel": "aunque",
+      "occurrenceCount": 3,
+      "lineSlugs": [
+        "gemma-openclaw",
+        "market-mapping"
+      ],
+      "entryIds": [
+        "gemma-openclaw--legacy-snapshot",
+        "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+      ],
+      "references": [
+        {
+          "type": "entry",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+          "entityId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--finding-3"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-automatizaciones",
+      "label": "Automatizaciones",
+      "normalizedLabel": "automatizaciones",
+      "occurrenceCount": 3,
+      "lineSlugs": [
+        "gemma-domotica-openclaw"
+      ],
+      "entryIds": [
+        "gemma-domotica-openclaw--legacy-snapshot"
+      ],
+      "references": [
+        {
+          "type": "source",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entityId": "gemma-domotica-openclaw--source-1"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--finding-4"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-contexto",
+      "label": "Contexto",
+      "normalizedLabel": "contexto",
+      "occurrenceCount": 3,
+      "lineSlugs": [
+        "gemma-openclaw",
+        "market-mapping"
+      ],
+      "entryIds": [
+        "gemma-openclaw--legacy-snapshot",
+        "market-mapping--2026-04-10T10-15-00Z--competitive-baseline"
+      ],
+      "references": [
+        {
+          "type": "finding",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+          "entityId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline--finding-1"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--finding-1"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-conviene",
+      "label": "Conviene",
+      "normalizedLabel": "conviene",
+      "occurrenceCount": 3,
+      "lineSlugs": [
+        "gemma-domotica-openclaw",
+        "market-mapping"
+      ],
+      "entryIds": [
+        "gemma-domotica-openclaw--legacy-snapshot",
+        "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+      ],
+      "references": [
+        {
+          "type": "entry",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+          "entityId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--finding-4"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-estado prioridad",
+      "label": "Estado Prioridad",
+      "normalizedLabel": "estado prioridad",
+      "occurrenceCount": 3,
+      "lineSlugs": [
+        "gemma-openclaw",
+        "market-mapping"
+      ],
+      "entryIds": [
+        "gemma-openclaw--legacy-snapshot",
+        "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+      ],
+      "references": [
+        {
+          "type": "action",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+          "entityId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction--action-1"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--finding-3"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-heuristica",
+      "label": "Heuristica",
+      "normalizedLabel": "heuristica",
+      "occurrenceCount": 3,
+      "lineSlugs": [
+        "gemma-openclaw",
+        "market-mapping"
+      ],
+      "entryIds": [
+        "gemma-openclaw--legacy-snapshot",
+        "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+      ],
+      "references": [
+        {
+          "type": "action",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+          "entityId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction--action-2"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--finding-3"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-home",
+      "label": "Home",
+      "normalizedLabel": "home",
+      "occurrenceCount": 3,
+      "lineSlugs": [
+        "gemma-domotica-openclaw"
+      ],
+      "entryIds": [
+        "gemma-domotica-openclaw--legacy-snapshot"
+      ],
+      "references": [
+        {
+          "type": "source",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entityId": "gemma-domotica-openclaw--source-1"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--finding-1"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-home assistant",
+      "label": "Home Assistant",
+      "normalizedLabel": "home assistant",
+      "occurrenceCount": 3,
+      "lineSlugs": [
+        "gemma-domotica-openclaw"
+      ],
+      "entryIds": [
+        "gemma-domotica-openclaw--legacy-snapshot"
+      ],
+      "references": [
+        {
+          "type": "source",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entityId": "gemma-domotica-openclaw--source-1"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--finding-1"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-modelo",
+      "label": "Modelo",
+      "normalizedLabel": "modelo",
+      "occurrenceCount": 3,
+      "lineSlugs": [
+        "gemma-openclaw",
+        "market-mapping"
+      ],
+      "entryIds": [
+        "gemma-openclaw--legacy-snapshot",
+        "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+      ],
+      "references": [
+        {
+          "type": "entry",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+          "entityId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--finding-3"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-mqtt",
+      "label": "Mqtt",
+      "normalizedLabel": "mqtt",
+      "occurrenceCount": 3,
+      "lineSlugs": [
+        "gemma-domotica-openclaw"
+      ],
+      "entryIds": [
+        "gemma-domotica-openclaw--legacy-snapshot"
+      ],
+      "references": [
+        {
+          "type": "source",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entityId": "gemma-domotica-openclaw--source-2"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--finding-3"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-mucho",
+      "label": "Mucho",
+      "normalizedLabel": "mucho",
+      "occurrenceCount": 3,
+      "lineSlugs": [
+        "gemma-openclaw",
+        "market-mapping"
+      ],
+      "entryIds": [
+        "gemma-openclaw--legacy-snapshot",
+        "market-mapping--2026-04-10T10-15-00Z--competitive-baseline"
+      ],
+      "references": [
+        {
+          "type": "finding",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+          "entityId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline--finding-1"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--finding-2"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-principal",
+      "label": "Principal",
+      "normalizedLabel": "principal",
+      "occurrenceCount": 3,
+      "lineSlugs": [
+        "gemma-domotica-openclaw",
+        "gemma-openclaw"
+      ],
+      "entryIds": [
+        "gemma-openclaw--legacy-snapshot"
+      ],
+      "references": [
+        {
+          "type": "finding",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--finding-1"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--legacy-snapshot"
+        },
+        {
+          "type": "source",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entityId": "gemma-domotica-openclaw--source-1"
+        }
+      ]
+    },
+    {
+      "id": "topic-prioridad",
+      "label": "Prioridad",
+      "normalizedLabel": "prioridad",
+      "occurrenceCount": 3,
+      "lineSlugs": [
+        "gemma-openclaw",
+        "market-mapping"
+      ],
+      "entryIds": [
+        "gemma-openclaw--legacy-snapshot",
+        "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+      ],
+      "references": [
+        {
+          "type": "action",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+          "entityId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction--action-1"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--finding-3"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-referencia",
+      "label": "Referencia",
+      "normalizedLabel": "referencia",
+      "occurrenceCount": 3,
+      "lineSlugs": [
+        "gemma-domotica-openclaw",
+        "market-mapping"
+      ],
+      "entryIds": [],
+      "references": [
+        {
+          "type": "source",
+          "lineSlug": "market-mapping",
+          "entityId": "market-mapping--source-1"
+        },
+        {
+          "type": "source",
+          "lineSlug": "market-mapping",
+          "entityId": "market-mapping--source-2"
+        },
+        {
+          "type": "source",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entityId": "gemma-domotica-openclaw--source-1"
+        }
+      ]
+    },
+    {
+      "id": "topic-temporal",
+      "label": "Temporal",
+      "normalizedLabel": "temporal",
+      "occurrenceCount": 3,
+      "lineSlugs": [
+        "gemma-openclaw",
+        "market-mapping"
+      ],
+      "entryIds": [
+        "gemma-openclaw--legacy-snapshot",
+        "market-mapping--2026-04-10T10-15-00Z--competitive-baseline"
+      ],
+      "references": [
+        {
+          "type": "finding",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+          "entityId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline--finding-1"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--finding-1"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-util",
+      "label": "Util",
+      "normalizedLabel": "util",
+      "occurrenceCount": 3,
+      "lineSlugs": [
+        "gemma-domotica-openclaw",
+        "market-mapping"
+      ],
+      "entryIds": [
+        "gemma-domotica-openclaw--legacy-snapshot",
+        "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+      ],
+      "references": [
+        {
+          "type": "entry",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+          "entityId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction"
+        },
+        {
+          "type": "finding",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--finding-3"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-aparece",
+      "label": "Aparece",
+      "normalizedLabel": "aparece",
+      "occurrenceCount": 2,
+      "lineSlugs": [
+        "gemma-domotica-openclaw"
+      ],
+      "entryIds": [
+        "gemma-domotica-openclaw--legacy-snapshot"
+      ],
+      "references": [
+        {
+          "type": "finding",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--finding-3"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-aparece repetidamente",
+      "label": "Aparece Repetidamente",
+      "normalizedLabel": "aparece repetidamente",
+      "occurrenceCount": 2,
+      "lineSlugs": [
+        "gemma-domotica-openclaw"
+      ],
+      "entryIds": [
+        "gemma-domotica-openclaw--legacy-snapshot"
+      ],
+      "references": [
+        {
+          "type": "finding",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--finding-3"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-assistant sigue",
+      "label": "Assistant Sigue",
+      "normalizedLabel": "assistant sigue",
+      "occurrenceCount": 2,
+      "lineSlugs": [
+        "gemma-domotica-openclaw"
+      ],
+      "entryIds": [
+        "gemma-domotica-openclaw--legacy-snapshot"
+      ],
+      "references": [
+        {
+          "type": "finding",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--finding-1"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-aunque heuristica",
+      "label": "Aunque Heuristica",
+      "normalizedLabel": "aunque heuristica",
+      "occurrenceCount": 2,
+      "lineSlugs": [
+        "gemma-openclaw"
+      ],
+      "entryIds": [
+        "gemma-openclaw--legacy-snapshot"
+      ],
+      "references": [
+        {
+          "type": "finding",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--finding-3"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-automatizaciones criticas",
+      "label": "Automatizaciones Criticas",
+      "normalizedLabel": "automatizaciones criticas",
+      "occurrenceCount": 2,
+      "lineSlugs": [
+        "gemma-domotica-openclaw"
+      ],
+      "entryIds": [
+        "gemma-domotica-openclaw--legacy-snapshot"
+      ],
+      "references": [
+        {
+          "type": "finding",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--finding-4"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-base",
+      "label": "Base",
+      "normalizedLabel": "base",
+      "occurrenceCount": 2,
+      "lineSlugs": [
+        "gemma-domotica-openclaw",
+        "gemma-openclaw"
+      ],
+      "entryIds": [],
+      "references": [
+        {
+          "type": "source",
+          "lineSlug": "gemma-openclaw",
+          "entityId": "gemma-openclaw--source-3"
+        },
+        {
+          "type": "source",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entityId": "gemma-domotica-openclaw--source-2"
+        }
+      ]
+    },
+    {
+      "id": "topic-basica",
+      "label": "Basica",
+      "normalizedLabel": "basica",
+      "occurrenceCount": 2,
+      "lineSlugs": [
+        "gemma-openclaw"
+      ],
+      "entryIds": [
+        "gemma-openclaw--legacy-snapshot"
+      ],
+      "references": [
+        {
+          "type": "finding",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--finding-3"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-capa",
+      "label": "Capa",
+      "normalizedLabel": "capa",
+      "occurrenceCount": 2,
+      "lineSlugs": [
+        "gemma-domotica-openclaw"
+      ],
+      "entryIds": [
+        "gemma-domotica-openclaw--legacy-snapshot"
+      ],
+      "references": [
+        {
+          "type": "finding",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--finding-2"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-capa investigacion",
+      "label": "Capa Investigacion",
+      "normalizedLabel": "capa investigacion",
+      "occurrenceCount": 2,
+      "lineSlugs": [
+        "gemma-domotica-openclaw"
+      ],
+      "entryIds": [
+        "gemma-domotica-openclaw--legacy-snapshot"
+      ],
+      "references": [
+        {
+          "type": "finding",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--finding-2"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-cliente",
+      "label": "Cliente",
+      "normalizedLabel": "cliente",
+      "occurrenceCount": 2,
+      "lineSlugs": [
+        "gemma-openclaw"
+      ],
+      "entryIds": [
+        "gemma-openclaw--legacy-snapshot"
+      ],
+      "references": [
+        {
+          "type": "finding",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--finding-2"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-competidores",
+      "label": "Competidores",
+      "normalizedLabel": "competidores",
+      "occurrenceCount": 2,
+      "lineSlugs": [
+        "market-mapping"
+      ],
+      "entryIds": [
+        "market-mapping--2026-04-10T10-15-00Z--competitive-baseline"
+      ],
+      "references": [
+        {
+          "type": "line",
+          "lineSlug": "market-mapping",
+          "entityId": "market-mapping"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+          "entityId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline"
+        }
+      ]
+    },
+    {
+      "id": "topic-contexto temporal",
+      "label": "Contexto Temporal",
+      "normalizedLabel": "contexto temporal",
+      "occurrenceCount": 2,
+      "lineSlugs": [
+        "gemma-openclaw"
+      ],
+      "entryIds": [
+        "gemma-openclaw--legacy-snapshot"
+      ],
+      "references": [
+        {
+          "type": "finding",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--finding-1"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-openclaw",
+          "entryId": "gemma-openclaw--legacy-snapshot",
+          "entityId": "gemma-openclaw--legacy-snapshot"
+        }
+      ]
+    },
+    {
+      "id": "topic-conviene separar",
+      "label": "Conviene Separar",
+      "normalizedLabel": "conviene separar",
+      "occurrenceCount": 2,
+      "lineSlugs": [
+        "gemma-domotica-openclaw"
+      ],
+      "entryIds": [
+        "gemma-domotica-openclaw--legacy-snapshot"
+      ],
+      "references": [
+        {
+          "type": "finding",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--finding-4"
+        },
+        {
+          "type": "entry",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot",
+          "entityId": "gemma-domotica-openclaw--legacy-snapshot"
+        }
+      ]
+    }
+  ],
+  "lines": [
+    {
+      "slug": "market-mapping",
+      "title": "Market Mapping",
+      "description": "Linea estructurada para mapear competidores, huecos y patrones repetidos en herramientas de investigacion local.",
+      "strategyMarkdown": "# Strategy\n\nSeguir competidores por bloques funcionales y registrar solo lo que afecte a decisiones futuras del visor.\n\n- separar producto, arquitectura y experiencia de uso\n- registrar evidencia con fecha y fuente\n- convertir comparaciones en acciones concretas\n",
+      "tags": [
+        "research-ops",
+        "market",
+        "structured"
+      ],
+      "status": "active",
+      "priority": "high",
+      "origins": [
+        "structured"
+      ],
+      "sources": [
+        {
+          "id": "market-mapping--source-1",
+          "lineSlug": "market-mapping",
+          "title": "Obsidian",
+          "url": "https://obsidian.md",
+          "note": "Referencia para exploracion de grafos y notas enlazadas.",
+          "tags": [
+            "knowledge-base",
+            "local-first"
+          ],
+          "kind": "document",
+          "origin": "structured"
+        },
+        {
+          "id": "market-mapping--source-2",
+          "lineSlug": "market-mapping",
+          "title": "Logseq",
+          "url": "https://logseq.com",
+          "note": "Buena referencia para timeline y bloques enlazados.",
+          "tags": [
+            "outliner",
+            "local-first"
+          ],
+          "kind": "document",
+          "origin": "structured"
+        }
+      ],
+      "findings": [
+        {
+          "id": "market-mapping--2026-04-12T16-40-00Z--noise-reduction--finding-1",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+          "title": "Estado explicito",
+          "summary": "Distinguir entre activo, validado e incierto ayuda a filtrar ruido.",
+          "tags": [
+            "status",
+            "noise"
+          ],
+          "topicHints": [
+            "estado",
+            "ruido"
+          ],
+          "status": "validated",
+          "createdAt": "2026-04-12T16:40:00.000Z",
+          "origin": "structured"
+        },
+        {
+          "id": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline--finding-1",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+          "title": "Timeline visible",
+          "summary": "Las herramientas que muestran secuencia temporal facilitan mucho retomar contexto.",
+          "tags": [
+            "timeline",
+            "ux"
+          ],
+          "topicHints": [
+            "timeline",
+            "contexto"
+          ],
+          "status": "validated",
+          "createdAt": "2026-04-10T10:15:00.000Z",
+          "origin": "structured"
+        },
+        {
+          "id": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline--finding-2",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+          "title": "Fuentes separadas",
+          "summary": "Separar fuentes de conclusiones reduce ruido y mejora auditabilidad.",
+          "tags": [
+            "sources",
+            "auditability"
+          ],
+          "topicHints": [
+            "fuentes",
+            "auditabilidad"
+          ],
+          "status": "active",
+          "createdAt": "2026-04-10T10:15:00.000Z",
+          "origin": "structured"
+        }
+      ],
+      "actions": [
+        {
+          "id": "market-mapping--2026-04-12T16-40-00Z--noise-reduction--action-1",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+          "title": "Añadir filtros por estado y prioridad",
+          "detail": "Aplicarlos al menos sobre lineas y entradas en la V1.",
+          "status": "in_progress",
+          "priority": "medium",
+          "tags": [
+            "filters",
+            "ui"
+          ],
+          "origin": "structured"
+        },
+        {
+          "id": "market-mapping--2026-04-12T16-40-00Z--noise-reduction--action-2",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+          "title": "Marcar temas repetidos",
+          "detail": "Empezar con heuristica por tokens compartidos antes de deduplicacion semantica avanzada.",
+          "status": "pending",
+          "priority": "medium",
+          "tags": [
+            "topics",
+            "heuristics"
+          ],
+          "origin": "structured"
+        },
+        {
+          "id": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline--action-1",
+          "lineSlug": "market-mapping",
+          "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+          "title": "Definir panel lateral de linea",
+          "detail": "Recoger estrategia, fuentes y temas repetidos sin ocultar el timeline.",
+          "status": "pending",
+          "priority": "high",
+          "tags": [
+            "ui",
+            "navigation"
+          ],
+          "origin": "structured"
+        }
+      ],
+      "entries": [
+        {
+          "id": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+          "lineSlug": "market-mapping",
+          "slug": "noise-reduction",
+          "title": "Noise reduction",
+          "summary": "Revision enfocada en separar informacion util de ruido dentro del visor.",
+          "summaryMarkdown": "## Noise reduction\n\nSe repite un patron: cuando los hallazgos no tienen estado o tema, las listas se vuelven dificiles de priorizar. Conviene dejar el modelo listo para estados y prioridades aunque la captura inicial sea manual.\n",
+          "timestamp": "2026-04-12T16:40:00.000Z",
+          "year": "2026",
+          "tags": [
+            "noise",
+            "findings",
+            "filters"
+          ],
+          "status": "active",
+          "priority": "medium",
+          "sources": [],
+          "findings": [
+            {
+              "id": "market-mapping--2026-04-12T16-40-00Z--noise-reduction--finding-1",
+              "lineSlug": "market-mapping",
+              "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+              "title": "Estado explicito",
+              "summary": "Distinguir entre activo, validado e incierto ayuda a filtrar ruido.",
+              "tags": [
+                "status",
+                "noise"
+              ],
+              "topicHints": [
+                "estado",
+                "ruido"
+              ],
+              "status": "validated",
+              "createdAt": "2026-04-12T16:40:00.000Z",
+              "origin": "structured"
+            }
+          ],
+          "actions": [
+            {
+              "id": "market-mapping--2026-04-12T16-40-00Z--noise-reduction--action-1",
+              "lineSlug": "market-mapping",
+              "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+              "title": "Añadir filtros por estado y prioridad",
+              "detail": "Aplicarlos al menos sobre lineas y entradas en la V1.",
+              "status": "in_progress",
+              "priority": "medium",
+              "tags": [
+                "filters",
+                "ui"
+              ],
+              "origin": "structured"
+            },
+            {
+              "id": "market-mapping--2026-04-12T16-40-00Z--noise-reduction--action-2",
+              "lineSlug": "market-mapping",
+              "entryId": "market-mapping--2026-04-12T16-40-00Z--noise-reduction",
+              "title": "Marcar temas repetidos",
+              "detail": "Empezar con heuristica por tokens compartidos antes de deduplicacion semantica avanzada.",
+              "status": "pending",
+              "priority": "medium",
+              "tags": [
+                "topics",
+                "heuristics"
+              ],
+              "origin": "structured"
+            }
+          ],
+          "artifacts": [],
+          "origin": "structured"
+        },
+        {
+          "id": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+          "lineSlug": "market-mapping",
+          "slug": "competitive-baseline",
+          "title": "Competitive baseline",
+          "summary": "Primera pasada de competidores locales para entender como presentan timeline, fuentes y acciones.",
+          "summaryMarkdown": "# Competitive baseline\n\nLa comparativa inicial confirma que casi todas las herramientas mezclan nota libre y estructura. La oportunidad aqui es separar el parseo del render para que la investigacion quede navegable sin backend.\n",
+          "timestamp": "2026-04-10T10:15:00.000Z",
+          "year": "2026",
+          "tags": [
+            "benchmark",
+            "ui",
+            "timeline"
+          ],
+          "status": "active",
+          "priority": "high",
+          "sources": [],
+          "findings": [
+            {
+              "id": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline--finding-1",
+              "lineSlug": "market-mapping",
+              "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+              "title": "Timeline visible",
+              "summary": "Las herramientas que muestran secuencia temporal facilitan mucho retomar contexto.",
+              "tags": [
+                "timeline",
+                "ux"
+              ],
+              "topicHints": [
+                "timeline",
+                "contexto"
+              ],
+              "status": "validated",
+              "createdAt": "2026-04-10T10:15:00.000Z",
+              "origin": "structured"
+            },
+            {
+              "id": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline--finding-2",
+              "lineSlug": "market-mapping",
+              "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+              "title": "Fuentes separadas",
+              "summary": "Separar fuentes de conclusiones reduce ruido y mejora auditabilidad.",
+              "tags": [
+                "sources",
+                "auditability"
+              ],
+              "topicHints": [
+                "fuentes",
+                "auditabilidad"
+              ],
+              "status": "active",
+              "createdAt": "2026-04-10T10:15:00.000Z",
+              "origin": "structured"
+            }
+          ],
+          "actions": [
+            {
+              "id": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline--action-1",
+              "lineSlug": "market-mapping",
+              "entryId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline",
+              "title": "Definir panel lateral de linea",
+              "detail": "Recoger estrategia, fuentes y temas repetidos sin ocultar el timeline.",
+              "status": "pending",
+              "priority": "high",
+              "tags": [
+                "ui",
+                "navigation"
+              ],
+              "origin": "structured"
+            }
+          ],
+          "artifacts": [],
+          "origin": "structured"
+        }
+      ],
+      "lastUpdated": "2026-04-15T04:48:34.897Z"
+    },
+    {
+      "slug": "gemma-openclaw",
+      "title": "Gemma OpenClaw",
+      "description": "Explorar como organizar investigaciones largas generadas con Gema para que queden reutilizables, auditables y faciles de continuar.",
+      "strategyMarkdown": "# Gemma OpenClaw\n\nExplorar como organizar investigaciones largas generadas con Gema para que queden reutilizables, auditables y faciles de continuar.\n\n## Preguntas activas\n\n- como separar estrategia de ejecucion diaria\n- como distinguir hechos, hipotesis y proximas acciones\n- como reducir duplicados y ruido sin IA compleja en la V1\n",
+      "tags": [
+        "auditables",
+        "aunque",
+        "base",
+        "basica",
+        "benchmark",
+        "cliente",
+        "contexto",
+        "continuar"
+      ],
+      "status": "unknown",
+      "priority": "unknown",
+      "origins": [
+        "legacy"
+      ],
+      "sources": [
+        {
+          "id": "gemma-openclaw--source-1",
+          "lineSlug": "gemma-openclaw",
+          "title": "Conversaciones operativas internas sobre como Gema produce resultados.",
+          "tags": [
+            "conversaciones",
+            "internas",
+            "operativas",
+            "produce",
+            "resultados"
+          ],
+          "kind": "other",
+          "origin": "legacy"
+        },
+        {
+          "id": "gemma-openclaw--source-2",
+          "lineSlug": "gemma-openclaw",
+          "title": "Notas de producto sobre visor, indexado local, timeline y filtros.",
+          "tags": [
+            "filtros",
+            "indexado",
+            "notas",
+            "producto",
+            "timeline"
+          ],
+          "kind": "other",
+          "origin": "legacy"
+        },
+        {
+          "id": "gemma-openclaw--source-3",
+          "lineSlug": "gemma-openclaw",
+          "title": "Benchmark informal de herramientas de knowledge base personales y research notebooks.",
+          "tags": [
+            "base",
+            "benchmark",
+            "herramientas",
+            "informal",
+            "knowledge"
+          ],
+          "kind": "other",
+          "origin": "legacy"
+        }
+      ],
+      "findings": [
+        {
+          "id": "gemma-openclaw--finding-1",
+          "lineSlug": "gemma-openclaw",
+          "title": "El valor principal no esta en renderizar markdown sino en navegar entidades con ",
+          "summary": "El valor principal no esta en renderizar markdown sino en navegar entidades con contexto temporal.",
+          "tags": [
+            "contexto",
+            "entidades",
+            "markdown",
+            "navegar",
+            "principal"
+          ],
+          "topicHints": [
+            "entidades",
+            "markdown",
+            "navegar",
+            "principal"
+          ],
+          "status": "validated",
+          "origin": "legacy",
+          "entryId": "gemma-openclaw--legacy-snapshot"
+        },
+        {
+          "id": "gemma-openclaw--finding-2",
+          "lineSlug": "gemma-openclaw",
+          "title": "Mantener un indice materializado simplifica mucho la UI local y evita inferencia",
+          "summary": "Mantener un indice materializado simplifica mucho la UI local y evita inferencias frágiles en cliente.",
+          "tags": [
+            "cliente",
+            "evita",
+            "fragiles",
+            "indice",
+            "inferencias"
+          ],
+          "topicHints": [
+            "evita",
+            "indice",
+            "mantener",
+            "materializado"
+          ],
+          "status": "validated",
+          "origin": "legacy",
+          "entryId": "gemma-openclaw--legacy-snapshot"
+        },
+        {
+          "id": "gemma-openclaw--finding-3",
+          "lineSlug": "gemma-openclaw",
+          "title": "Tags, estado y prioridad merecen formar parte del modelo interno desde el princi",
+          "summary": "Tags, estado y prioridad merecen formar parte del modelo interno desde el principio aunque la heuristica inicial sea basica.",
+          "tags": [
+            "aunque",
+            "basica",
+            "estado",
+            "formar",
+            "heuristica"
+          ],
+          "topicHints": [
+            "estado",
+            "formar",
+            "interno",
+            "merecen"
+          ],
+          "status": "validated",
+          "origin": "legacy",
+          "entryId": "gemma-openclaw--legacy-snapshot"
+        },
+        {
+          "id": "gemma-openclaw--finding-4",
+          "lineSlug": "gemma-openclaw",
+          "title": "Los temas repetidos mas utiles suelen salir de hallazgos y acciones, no solo de ",
+          "summary": "Los temas repetidos mas utiles suelen salir de hallazgos y acciones, no solo de los titulos de informes.",
+          "tags": [
+            "informes",
+            "repetidos",
+            "salir",
+            "solo",
+            "suelen"
+          ],
+          "topicHints": [
+            "repetidos",
+            "salir",
+            "solo",
+            "suelen"
+          ],
+          "status": "validated",
+          "origin": "legacy",
+          "entryId": "gemma-openclaw--legacy-snapshot"
+        }
+      ],
+      "actions": [],
+      "entries": [
+        {
+          "id": "gemma-openclaw--legacy-snapshot",
+          "lineSlug": "gemma-openclaw",
+          "slug": "legacy-snapshot",
+          "title": "Legacy snapshot",
+          "summary": "Entrada sintetica generada desde README.md, findings.md y sources.md.",
+          "summaryMarkdown": "# Hallazgos\n\n- El valor principal no esta en renderizar markdown sino en navegar entidades con contexto temporal.\n- Mantener un indice materializado simplifica mucho la UI local y evita inferencias frágiles en cliente.\n- Tags, estado y prioridad merecen formar parte del modelo interno desde el principio aunque la heuristica inicial sea basica.\n- Los temas repetidos mas utiles suelen salir de hallazgos y acciones, no solo de los titulos de informes.",
+          "timestamp": "2026-04-15T04:48:34.891Z",
+          "year": "2026",
+          "tags": [
+            "activas",
+            "auditables",
+            "aunque",
+            "base",
+            "basica"
+          ],
+          "status": "active",
+          "priority": "unknown",
+          "sources": [],
+          "findings": [
+            {
+              "id": "gemma-openclaw--finding-1",
+              "lineSlug": "gemma-openclaw",
+              "title": "El valor principal no esta en renderizar markdown sino en navegar entidades con ",
+              "summary": "El valor principal no esta en renderizar markdown sino en navegar entidades con contexto temporal.",
+              "tags": [
+                "contexto",
+                "entidades",
+                "markdown",
+                "navegar",
+                "principal"
+              ],
+              "topicHints": [
+                "entidades",
+                "markdown",
+                "navegar",
+                "principal"
+              ],
+              "status": "validated",
+              "origin": "legacy",
+              "entryId": "gemma-openclaw--legacy-snapshot"
+            },
+            {
+              "id": "gemma-openclaw--finding-2",
+              "lineSlug": "gemma-openclaw",
+              "title": "Mantener un indice materializado simplifica mucho la UI local y evita inferencia",
+              "summary": "Mantener un indice materializado simplifica mucho la UI local y evita inferencias frágiles en cliente.",
+              "tags": [
+                "cliente",
+                "evita",
+                "fragiles",
+                "indice",
+                "inferencias"
+              ],
+              "topicHints": [
+                "evita",
+                "indice",
+                "mantener",
+                "materializado"
+              ],
+              "status": "validated",
+              "origin": "legacy",
+              "entryId": "gemma-openclaw--legacy-snapshot"
+            },
+            {
+              "id": "gemma-openclaw--finding-3",
+              "lineSlug": "gemma-openclaw",
+              "title": "Tags, estado y prioridad merecen formar parte del modelo interno desde el princi",
+              "summary": "Tags, estado y prioridad merecen formar parte del modelo interno desde el principio aunque la heuristica inicial sea basica.",
+              "tags": [
+                "aunque",
+                "basica",
+                "estado",
+                "formar",
+                "heuristica"
+              ],
+              "topicHints": [
+                "estado",
+                "formar",
+                "interno",
+                "merecen"
+              ],
+              "status": "validated",
+              "origin": "legacy",
+              "entryId": "gemma-openclaw--legacy-snapshot"
+            },
+            {
+              "id": "gemma-openclaw--finding-4",
+              "lineSlug": "gemma-openclaw",
+              "title": "Los temas repetidos mas utiles suelen salir de hallazgos y acciones, no solo de ",
+              "summary": "Los temas repetidos mas utiles suelen salir de hallazgos y acciones, no solo de los titulos de informes.",
+              "tags": [
+                "informes",
+                "repetidos",
+                "salir",
+                "solo",
+                "suelen"
+              ],
+              "topicHints": [
+                "repetidos",
+                "salir",
+                "solo",
+                "suelen"
+              ],
+              "status": "validated",
+              "origin": "legacy",
+              "entryId": "gemma-openclaw--legacy-snapshot"
+            }
+          ],
+          "actions": [],
+          "artifacts": [],
+          "origin": "legacy"
+        }
+      ],
+      "lastUpdated": "2026-04-15T04:48:34.891Z"
+    },
+    {
+      "slug": "gemma-domotica-openclaw",
+      "title": "Gemma Domotica OpenClaw",
+      "description": "Investigar como usar OpenClaw y herramientas locales para automatizacion domestica con foco en privacidad, mantenimiento y trazabilidad.",
+      "strategyMarkdown": "# Gemma Domotica OpenClaw\n\nInvestigar como usar OpenClaw y herramientas locales para automatizacion domestica con foco en privacidad, mantenimiento y trazabilidad.\n\n## Criterios actuales\n\n- minimizar dependencia de nube\n- priorizar hardware sencillo de reponer\n- dejar hueco para integracion futura con sensores y reglas\n",
+      "tags": [
+        "assistant",
+        "home",
+        "mqtt",
+        "automatizaciones",
+        "dispositivos",
+        "domotica",
+        "https",
+        "integraciones"
+      ],
+      "status": "unknown",
+      "priority": "unknown",
+      "origins": [
+        "legacy"
+      ],
+      "sources": [
+        {
+          "id": "gemma-domotica-openclaw--source-1",
+          "lineSlug": "gemma-domotica-openclaw",
+          "title": "Home Assistant Documentation",
+          "url": "https://www.home-assistant.io/docs/",
+          "note": "referencia principal de integraciones y automatizaciones.",
+          "tags": [
+            "assistant",
+            "home",
+            "automatizaciones",
+            "docs",
+            "documentation"
+          ],
+          "kind": "web",
+          "origin": "legacy"
+        },
+        {
+          "id": "gemma-domotica-openclaw--source-2",
+          "lineSlug": "gemma-domotica-openclaw",
+          "title": "MQTT Essentials",
+          "url": "https://www.hivemq.com/mqtt/",
+          "note": "base conceptual para el bus de eventos.",
+          "tags": [
+            "mqtt",
+            "base",
+            "conceptual",
+            "essentials",
+            "eventos"
+          ],
+          "kind": "web",
+          "origin": "legacy"
+        },
+        {
+          "id": "gemma-domotica-openclaw--source-3",
+          "lineSlug": "gemma-domotica-openclaw",
+          "title": "Foro local de domotica independiente",
+          "note": "comparativas de gateways Zigbee y problemas de compatibilidad.",
+          "tags": [
+            "comparativas",
+            "compatibilidad",
+            "domotica",
+            "foro",
+            "gateways"
+          ],
+          "kind": "other",
+          "origin": "legacy"
+        }
+      ],
+      "findings": [
+        {
+          "id": "gemma-domotica-openclaw--finding-1",
+          "lineSlug": "gemma-domotica-openclaw",
+          "title": "Home Assistant sigue siendo la pieza mas madura para integrar dispositivos heter",
+          "summary": "Home Assistant sigue siendo la pieza mas madura para integrar dispositivos heterogeneos sin forzar lock-in.",
+          "tags": [
+            "assistant",
+            "dispositivos",
+            "forzar",
+            "heterogeneos",
+            "home"
+          ],
+          "topicHints": [
+            "assistant",
+            "dispositivos",
+            "home",
+            "integrar"
+          ],
+          "status": "validated",
+          "origin": "legacy",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot"
+        },
+        {
+          "id": "gemma-domotica-openclaw--finding-2",
+          "lineSlug": "gemma-domotica-openclaw",
+          "title": "OpenClaw sirve mejor como capa de investigacion, registro y seguimiento que como",
+          "summary": "OpenClaw sirve mejor como capa de investigacion, registro y seguimiento que como motor en tiempo real.",
+          "tags": [
+            "capa",
+            "investigacion",
+            "mejor",
+            "motor",
+            "real"
+          ],
+          "topicHints": [
+            "capa",
+            "investigacion",
+            "mejor",
+            "registro"
+          ],
+          "status": "active",
+          "origin": "legacy",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot"
+        },
+        {
+          "id": "gemma-domotica-openclaw--finding-3",
+          "lineSlug": "gemma-domotica-openclaw",
+          "title": "MQTT aparece repetidamente como protocolo puente util para desacoplar hardware y",
+          "summary": "MQTT aparece repetidamente como protocolo puente util para desacoplar hardware y reglas.",
+          "tags": [
+            "aparece",
+            "desacoplar",
+            "hardware",
+            "mqtt",
+            "protocolo"
+          ],
+          "topicHints": [
+            "aparece",
+            "desacoplar",
+            "hardware",
+            "mqtt"
+          ],
+          "status": "active",
+          "origin": "legacy",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot"
+        },
+        {
+          "id": "gemma-domotica-openclaw--finding-4",
+          "lineSlug": "gemma-domotica-openclaw",
+          "title": "Conviene separar automatizaciones criticas de experimentos exploratorios para no",
+          "summary": "Conviene separar automatizaciones criticas de experimentos exploratorios para no mezclar ruido con decisiones estables.",
+          "tags": [
+            "automatizaciones",
+            "conviene",
+            "criticas",
+            "decisiones",
+            "estables"
+          ],
+          "topicHints": [
+            "automatizaciones",
+            "conviene",
+            "criticas",
+            "experimentos"
+          ],
+          "status": "active",
+          "origin": "legacy",
+          "entryId": "gemma-domotica-openclaw--legacy-snapshot"
+        }
+      ],
+      "actions": [],
+      "entries": [
+        {
+          "id": "gemma-domotica-openclaw--legacy-snapshot",
+          "lineSlug": "gemma-domotica-openclaw",
+          "slug": "legacy-snapshot",
+          "title": "Legacy snapshot",
+          "summary": "Entrada sintetica generada desde README.md, findings.md y sources.md.",
+          "summaryMarkdown": "# Hallazgos\n\n- Home Assistant sigue siendo la pieza mas madura para integrar dispositivos heterogeneos sin forzar lock-in.\n- OpenClaw sirve mejor como capa de investigacion, registro y seguimiento que como motor en tiempo real.\n- MQTT aparece repetidamente como protocolo puente util para desacoplar hardware y reglas.\n- Conviene separar automatizaciones criticas de experimentos exploratorios para no mezclar ruido con decisiones estables.\n\n## Riesgos observados\n\nLa sobrecarga de mantenimiento crece rapido cuando se mezclan integraciones beta con dispositivos de baja calidad.",
+          "timestamp": "2026-04-15T04:48:34.887Z",
+          "year": "2026",
+          "tags": [
+            "assistant",
+            "home",
+            "mqtt",
+            "automatizaciones",
+            "dispositivos"
+          ],
+          "status": "active",
+          "priority": "unknown",
+          "sources": [],
+          "findings": [
+            {
+              "id": "gemma-domotica-openclaw--finding-1",
+              "lineSlug": "gemma-domotica-openclaw",
+              "title": "Home Assistant sigue siendo la pieza mas madura para integrar dispositivos heter",
+              "summary": "Home Assistant sigue siendo la pieza mas madura para integrar dispositivos heterogeneos sin forzar lock-in.",
+              "tags": [
+                "assistant",
+                "dispositivos",
+                "forzar",
+                "heterogeneos",
+                "home"
+              ],
+              "topicHints": [
+                "assistant",
+                "dispositivos",
+                "home",
+                "integrar"
+              ],
+              "status": "validated",
+              "origin": "legacy",
+              "entryId": "gemma-domotica-openclaw--legacy-snapshot"
+            },
+            {
+              "id": "gemma-domotica-openclaw--finding-2",
+              "lineSlug": "gemma-domotica-openclaw",
+              "title": "OpenClaw sirve mejor como capa de investigacion, registro y seguimiento que como",
+              "summary": "OpenClaw sirve mejor como capa de investigacion, registro y seguimiento que como motor en tiempo real.",
+              "tags": [
+                "capa",
+                "investigacion",
+                "mejor",
+                "motor",
+                "real"
+              ],
+              "topicHints": [
+                "capa",
+                "investigacion",
+                "mejor",
+                "registro"
+              ],
+              "status": "active",
+              "origin": "legacy",
+              "entryId": "gemma-domotica-openclaw--legacy-snapshot"
+            },
+            {
+              "id": "gemma-domotica-openclaw--finding-3",
+              "lineSlug": "gemma-domotica-openclaw",
+              "title": "MQTT aparece repetidamente como protocolo puente util para desacoplar hardware y",
+              "summary": "MQTT aparece repetidamente como protocolo puente util para desacoplar hardware y reglas.",
+              "tags": [
+                "aparece",
+                "desacoplar",
+                "hardware",
+                "mqtt",
+                "protocolo"
+              ],
+              "topicHints": [
+                "aparece",
+                "desacoplar",
+                "hardware",
+                "mqtt"
+              ],
+              "status": "active",
+              "origin": "legacy",
+              "entryId": "gemma-domotica-openclaw--legacy-snapshot"
+            },
+            {
+              "id": "gemma-domotica-openclaw--finding-4",
+              "lineSlug": "gemma-domotica-openclaw",
+              "title": "Conviene separar automatizaciones criticas de experimentos exploratorios para no",
+              "summary": "Conviene separar automatizaciones criticas de experimentos exploratorios para no mezclar ruido con decisiones estables.",
+              "tags": [
+                "automatizaciones",
+                "conviene",
+                "criticas",
+                "decisiones",
+                "estables"
+              ],
+              "topicHints": [
+                "automatizaciones",
+                "conviene",
+                "criticas",
+                "experimentos"
+              ],
+              "status": "active",
+              "origin": "legacy",
+              "entryId": "gemma-domotica-openclaw--legacy-snapshot"
+            }
+          ],
+          "actions": [],
+          "artifacts": [],
+          "origin": "legacy"
+        }
+      ],
+      "lastUpdated": "2026-04-15T04:48:34.887Z"
+    }
+  ]
+}
