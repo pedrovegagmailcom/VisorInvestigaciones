@@ -264,6 +264,130 @@ El sistema gestiona correctamente la concurrencia:
 - **Prevención de conflictos visuales**: El estado "success" del botón persiste hasta que el usuario interactúa de nuevo
 - **Detección de API**: La web verifica cada 10s si la API está disponible y adapta la UI
 
+## Gestión de líneas desde la UI
+
+Puedes organizar las líneas de investigación directamente desde el visor sin borrar datos del disco.
+
+### Estados visuales
+
+Cada línea puede tener uno de estos estados visuales:
+
+- **Activa** → Visible en la vista principal (por defecto)
+- **Oculta** → No aparece en la vista principal pero sigue existiendo
+- **Archivada** → Movida a una sección separada de archivadas
+
+**Importante:** Estos estados solo afectan a la visualización en el visor. No se borran ni modificifican las carpetas de `research/`.
+
+### Acciones disponibles
+
+En cada tarjeta de línea encontrarás botones según el estado actual:
+
+| Estado Actual | Acciones disponibles |
+|---------------|---------------------|
+| Activa | 👁️ **Ocultar** - Oculta de la vista principal |
+| Activa | 📦 **Archivar** - Mueve a archivadas |
+| Oculta | 🔄 **Restaurar** - Vuelve a activa |
+| Oculta | 📦 **Archivar** - Mueve a archivadas |
+| Archivada | 🔄 **Restaurar** - Vuelve a activa |
+
+### Tabs de visualización
+
+En la pantalla principal hay tres tabs para filtrar líneas:
+
+- **Activas** (n) - Líneas visibles por defecto
+- **Archivadas** (n) - Líneas archivadas
+- **Ocultas** (n) - Líneas ocultas
+
+### Persistencia
+
+El estado visual se guarda en:
+```
+data/generated/ui-state.json
+```
+
+Este archivo:
+- Se mantiene independiente del índice generado
+- No se borra al reindexar
+- Se limpia automáticamente de líneas que ya no existen
+- Se reaplica cuando una línea reaparece con el mismo slug
+
+## Arranque automático con systemd (Ubuntu/Linux)
+
+Para que el visor inicie automáticamente al arrancar Ubuntu:
+
+### Instalación rápida
+
+```bash
+# Desde el directorio del repositorio
+bash install-systemd.sh
+```
+
+Este script detectará tu configuración y creará el servicio automáticamente.
+
+### Instalación manual
+
+1. **Crear archivo de servicio:**
+
+```bash
+sudo nano /etc/systemd/system/visor-investigaciones.service
+```
+
+2. **Contenido (ajusta las rutas):**
+
+```ini
+[Unit]
+Description=VisorInvestigaciones
+After=network.target
+
+[Service]
+Type=simple
+User=pedro
+WorkingDirectory=/home/pedro/VisorInvestigaciones
+Environment="RESEARCH_PATH=/home/pedro/.openclaw/workspace/research"
+Environment="INDEXER_API_PORT=3456"
+ExecStart=/home/pedro/VisorInvestigaciones/start-visor.sh
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+```
+
+3. **Activar e iniciar:**
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable visor-investigaciones
+sudo systemctl start visor-investigaciones
+```
+
+### Comandos útiles
+
+```bash
+# Ver estado
+sudo systemctl status visor-investigaciones
+
+# Ver logs en tiempo real
+sudo journalctl -u visor-investigaciones -f
+
+# Reiniciar
+sudo systemctl restart visor-investigaciones
+
+# Detener
+sudo systemctl stop visor-investigaciones
+```
+
+### API de gestión de líneas
+
+```bash
+# Obtener estado UI
+GET http://127.0.0.1:3456/api/ui-state
+
+# Cambiar estado visual de una línea
+POST http://127.0.0.1:3456/api/lines/{lineSlug}/status
+Body: { "status": "archived" }  // "active", "hidden", o "archived"
+```
+
 ### Fallback manual
 
 Si el modo automático falla o necesitas control total:

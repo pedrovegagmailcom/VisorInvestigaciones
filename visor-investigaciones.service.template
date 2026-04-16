@@ -1,0 +1,34 @@
+[Unit]
+Description=VisorInvestigaciones - Visor de investigacion local
+Documentation=https://github.com/pedrovegagmailcom/VisorInvestigaciones
+After=network.target
+
+[Service]
+Type=simple
+User=%USER%
+WorkingDirectory=%REPO_PATH%
+
+# Variables de entorno
+Environment="RESEARCH_PATH=%RESEARCH_PATH%"
+Environment="INDEXER_API_PORT=3456"
+Environment="NODE_ENV=production"
+
+# Cargar nvm si existe (para usuarios que instalaron Node via nvm)
+Environment="NVM_DIR=%HOME%/.nvm"
+
+# Comando de inicio
+ExecStart=%REPO_PATH%/start-visor.sh
+
+# Reinicio automatico
+Restart=on-failure
+RestartSec=10
+StartLimitInterval=60s
+StartLimitBurst=3
+
+# Logs
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=visor-investigaciones
+
+[Install]
+WantedBy=multi-user.target

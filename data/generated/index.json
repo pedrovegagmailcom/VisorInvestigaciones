@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-15T17:28:12.471Z",
+  "generatedAt": "2026-04-15T19:10:41.357Z",
   "sourcePath": "C:\\Users\\pedro\\git\\visor_researches\\VisorInvestigaciones\\data\\sample\\research",
   "stats": {
     "lineCount": 3,
@@ -1623,7 +1623,8 @@
           "origin": "structured"
         }
       ],
-      "lastUpdated": "2026-04-15T04:48:34.897Z"
+      "lastUpdated": "2026-04-15T04:48:34.897Z",
+      "visualStatus": "active"
     },
     {
       "slug": "gemma-openclaw",
@@ -1895,7 +1896,8 @@
           "origin": "legacy"
         }
       ],
-      "lastUpdated": "2026-04-15T04:48:34.891Z"
+      "lastUpdated": "2026-04-15T04:48:34.891Z",
+      "visualStatus": "active"
     },
     {
       "slug": "gemma-domotica-openclaw",
@@ -2172,7 +2174,8 @@
           "origin": "legacy"
         }
       ],
-      "lastUpdated": "2026-04-15T04:48:34.887Z"
+      "lastUpdated": "2026-04-15T04:48:34.887Z",
+      "visualStatus": "active"
     }
   ]
 }

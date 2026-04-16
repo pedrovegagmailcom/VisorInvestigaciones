@@ -21,11 +21,12 @@ import type {
   TopicReference,
 } from "@shared/domain";
 import { entryStatuses, lineStatuses, priorities } from "@shared/domain";
+import type { VisualStatus } from "@shared/ui-state";
 
 import { LineCard } from "./components/LineCard";
 import { MarkdownBlock } from "./components/MarkdownBlock";
 import { Panel } from "./components/Panel";
-import { compactDate, formatDate, loadResearchIndex, matchesQuery } from "./lib/data";
+import { compactDate, formatDate, loadResearchIndex, matchesQuery, updateLineVisualStatus } from "./lib/data";
 
 type SearchParamsSetter = ReturnType<typeof useSearchParams>[1];
 
@@ -247,10 +248,12 @@ export function App() {
 
 function HomePage({ index }: { index: ResearchIndex }) {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [statusMessage, setStatusMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
   const query = searchParams.get("q") ?? "";
   const format = searchParams.get("format") ?? "all";
   const status = searchParams.get("status") ?? "all";
   const priority = searchParams.get("priority") ?? "all";
+  const visualFilter = (searchParams.get("visual") ?? "active") as VisualStatus | "all";
   const selectedTopicId = searchParams.get("topic") ?? "";
   const selectedTopic = findTopic(index, selectedTopicId);
 
@@ -262,10 +265,20 @@ function HomePage({ index }: { index: ResearchIndex }) {
       const matchesStatus = status === "all" || line.status === status;
       const matchesPriority = priority === "all" || line.priority === priority;
       const matchesTopic = !selectedTopic || selectedTopic.lineSlugs.includes(line.slug);
+      const lineVisualStatus = line.visualStatus ?? "active";
+      const matchesVisual = visualFilter === "all" || lineVisualStatus === visualFilter;
 
-      return matchesFormat && matchesStatus && matchesPriority && matchesTopic && matchesQuery(searchBlob, query);
+      return matchesFormat && matchesStatus && matchesPriority && matchesTopic && matchesVisual && matchesQuery(searchBlob, query);
     });
-  }, [format, index.lines, priority, query, selectedTopic, status]);
+  }, [format, index.lines, priority, query, selectedTopic, status, visualFilter]);
+
+  const lineCountsByVisual = useMemo(() => {
+    return {
+      active: index.lines.filter((l) => (l.visualStatus ?? "active") === "active").length,
+      hidden: index.lines.filter((l) => l.visualStatus === "hidden").length,
+      archived: index.lines.filter((l) => l.visualStatus === "archived").length,
+    };
+  }, [index.lines]);
 
   const repeatedTopics = useMemo(() => {
     return index.repeatedTopics
@@ -277,7 +290,17 @@ function HomePage({ index }: { index: ResearchIndex }) {
       .slice(0, 12);
   }, [filteredLines, index.repeatedTopics, query]);
 
-  const hasActiveFilters = query || format !== "all" || status !== "all" || priority !== "all" || selectedTopicId;
+  const hasActiveFilters = query || format !== "all" || status !== "all" || priority !== "all" || selectedTopicId || visualFilter !== "active";
+
+  async function handleStatusChange(lineSlug: string, newStatus: VisualStatus) {
+    const result = await updateLineVisualStatus(lineSlug, newStatus);
+    if (result.success) {
+      setStatusMessage({ type: "success", text: result.message });
+    } else {
+      setStatusMessage({ type: "error", text: result.message });
+    }
+    setTimeout(() => setStatusMessage(null), 4000);
+  }
 
   return (
     <main className="content-stack">
@@ -347,11 +370,42 @@ function HomePage({ index }: { index: ResearchIndex }) {
             selectedTopic ? `Tema: ${selectedTopic.label}` : undefined,
           ]}
         />
+
+        {statusMessage && (
+          <div className={`status-banner status-banner--${statusMessage.type}`}>
+            {statusMessage.text}
+          </div>
+        )}
       </Panel>
 
       <div className="layout-grid">
         <div className="content-stack">
-          <Panel title="Lineas de investigacion" subtitle={`${filteredLines.length} lineas visibles`}>
+          <Panel 
+            title="Lineas de investigacion" 
+            subtitle={`${filteredLines.length} lineas visibles`}
+            aside={
+              <div className="visual-tabs">
+                <button
+                  className={`visual-tab ${visualFilter === "active" ? "visual-tab--active" : ""}`}
+                  onClick={() => updateParam(setSearchParams, searchParams, "visual", "active")}
+                >
+                  Activas ({lineCountsByVisual.active})
+                </button>
+                <button
+                  className={`visual-tab ${visualFilter === "archived" ? "visual-tab--active" : ""}`}
+                  onClick={() => updateParam(setSearchParams, searchParams, "visual", "archived")}
+                >
+                  Archivadas ({lineCountsByVisual.archived})
+                </button>
+                <button
+                  className={`visual-tab ${visualFilter === "hidden" ? "visual-tab--active" : ""}`}
+                  onClick={() => updateParam(setSearchParams, searchParams, "visual", "hidden")}
+                >
+                  Ocultas ({lineCountsByVisual.hidden})
+                </button>
+              </div>
+            }
+          >
             <div className="cards-grid">
               {filteredLines.map((line) => (
                 <LineCard
@@ -359,9 +413,22 @@ function HomePage({ index }: { index: ResearchIndex }) {
                   key={line.slug}
                   line={line}
                   matchingEntries={line.entries.filter((entry) => matchesQuery(buildEntrySearchBlob(entry), query)).length}
+                  onStatusChange={handleStatusChange}
                 />
               ))}
-              {filteredLines.length === 0 ? <p className="muted">No hay lineas que cumplan los filtros actuales.</p> : null}
+              {filteredLines.length === 0 ? (
+                <div className="empty-state">
+                  <p className="muted">No hay líneas {visualFilter === "active" ? "activas" : visualFilter === "archived" ? "archivadas" : "ocultas"}.</p>
+                  {visualFilter !== "active" && (
+                    <button 
+                      className="button button--ghost"
+                      onClick={() => updateParam(setSearchParams, searchParams, "visual", "active")}
+                    >
+                      Ver líneas activas
+                    </button>
+                  )}
+                </div>
+              ) : null}
             </div>
           </Panel>
         </div>

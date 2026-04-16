@@ -19,11 +19,13 @@ import type {
   SourceKind,
   TopicReference,
 } from "../../../shared/domain";
+import type { LineVisualState, UIState, VisualStatus } from "../../../shared/ui-state";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 const sampleResearchPath = path.join(repoRoot, "data", "sample", "research");
 const generatedIndexPath = path.join(repoRoot, "data", "generated", "index.json");
 const publicIndexPath = path.join(repoRoot, "web", "public", "data", "generated", "index.json");
+const uiStatePath = path.join(repoRoot, "data", "generated", "ui-state.json");
 
 const stopWords = new Set([
   "about",
@@ -216,6 +218,66 @@ function startApiServer() {
       return;
     }
 
+    // UI State endpoints
+    if (req.url === "/api/ui-state" && req.method === "GET") {
+      try {
+        const state = await loadUIState();
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(state));
+      } catch (error) {
+        res.writeHead(500, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({
+          status: "error",
+          message: error instanceof Error ? error.message : String(error),
+        }));
+      }
+      return;
+    }
+
+    // Update line visual status: POST /api/lines/{slug}/status
+    const lineStatusMatch = req.url?.match(/^\/api\/lines\/([^\/]+)\/status$/);
+    if (lineStatusMatch && lineStatusMatch[1] && req.method === "POST") {
+      const lineSlug = decodeURIComponent(lineStatusMatch[1]);
+      
+      try {
+        let body = "";
+        for await (const chunk of req) {
+          body += chunk;
+        }
+        
+        const data = JSON.parse(body);
+        const status = data.status;
+        
+        if (!status || !["active", "hidden", "archived"].includes(status)) {
+          res.writeHead(400, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ status: "error", message: "Invalid status. Must be 'active', 'hidden', or 'archived'" }));
+          return;
+        }
+        
+        await updateLineVisualState(lineSlug, status as VisualStatus);
+        
+        // Reindex to apply the visual status change
+        if (currentResearchPath && !isIndexing) {
+          isIndexing = true;
+          try {
+            await runIndexer(currentResearchPath);
+          } finally {
+            isIndexing = false;
+          }
+        }
+        
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ status: "success", lineSlug, visualStatus: status }));
+      } catch (error) {
+        res.writeHead(500, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({
+          status: "error",
+          message: error instanceof Error ? error.message : String(error),
+        }));
+      }
+      return;
+    }
+
     res.writeHead(404, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ status: "error", message: "Not found" }));
   });
@@ -223,15 +285,27 @@ function startApiServer() {
   server.listen(API_PORT, "127.0.0.1", () => {
     process.stdout.write(`[${new Date().toISOString()}] API server listening on http://127.0.0.1:${API_PORT}\n`);
     process.stdout.write(`  POST http://127.0.0.1:${API_PORT}/api/reindex - Trigger manual reindex\n`);
-    process.stdout.write(`  GET  http://127.0.0.1:${API_PORT}/api/status   - Get index status\n\n`);
+    process.stdout.write(`  GET  http://127.0.0.1:${API_PORT}/api/status   - Get index status\n`);
+    process.stdout.write(`  GET  http://127.0.0.1:${API_PORT}/api/ui-state - Get UI state\n`);
+    process.stdout.write(`  POST http://127.0.0.1:${API_PORT}/api/lines/{slug}/status - Update line visual status\n\n`);
   });
 }
 
 async function runIndexer(researchPath: string) {
   const startTime = Date.now();
+  const uiState = await loadUIState();
   const legacyLines = await loadLegacyLines(researchPath);
   const structuredLines = await loadStructuredLines(researchPath);
   const mergedLines = mergeLines([...legacyLines, ...structuredLines]);
+  
+  // Apply visual status from UI state to each line
+  for (const line of mergedLines) {
+    (line as ResearchLine & { visualStatus: VisualStatus }).visualStatus = getLineVisualState(uiState, line.slug);
+  }
+  
+  // Cleanup UI state for lines that no longer exist
+  await cleanupUIState(mergedLines.map(l => l.slug));
+  
   const repeatedTopics = buildRepeatedTopics(mergedLines);
 
   const index: ResearchIndex = {
@@ -309,6 +383,58 @@ async function collectMtimes(dir: string): Promise<Map<string, number>> {
 function isRelevantFile(filename: string): boolean {
   const relevantExtensions = [".md", ".json"];
   return relevantExtensions.some(ext => filename.endsWith(ext));
+}
+
+// UI State management functions
+async function loadUIState(): Promise<UIState> {
+  try {
+    const content = await fs.readFile(uiStatePath, "utf8");
+    return JSON.parse(content) as UIState;
+  } catch {
+    return { version: 1, updatedAt: new Date().toISOString(), lines: [] };
+  }
+}
+
+async function saveUIState(state: UIState): Promise<void> {
+  await fs.mkdir(path.dirname(uiStatePath), { recursive: true });
+  await fs.writeFile(uiStatePath, JSON.stringify(state, null, 2) + "\n", "utf8");
+}
+
+function getLineVisualState(state: UIState, lineSlug: string): VisualStatus {
+  const lineState = state.lines.find(l => l.lineSlug === lineSlug);
+  return lineState?.status ?? "active";
+}
+
+async function updateLineVisualState(lineSlug: string, status: VisualStatus): Promise<UIState> {
+  const state = await loadUIState();
+  const existingIndex = state.lines.findIndex(l => l.lineSlug === lineSlug);
+  
+  const lineState: LineVisualState = {
+    lineSlug,
+    status,
+    updatedAt: new Date().toISOString(),
+  };
+  
+  if (existingIndex >= 0) {
+    state.lines[existingIndex] = lineState;
+  } else {
+    state.lines.push(lineState);
+  }
+  
+  state.updatedAt = new Date().toISOString();
+  await saveUIState(state);
+  return state;
+}
+
+async function cleanupUIState(existingLineSlugs: string[]): Promise<void> {
+  const state = await loadUIState();
+  const initialCount = state.lines.length;
+  state.lines = state.lines.filter(l => existingLineSlugs.includes(l.lineSlug));
+  
+  if (state.lines.length !== initialCount) {
+    state.updatedAt = new Date().toISOString();
+    await saveUIState(state);
+  }
 }
 
 async function resolveResearchPath() {

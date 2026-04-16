@@ -79,6 +79,7 @@ export interface ResearchLine {
   actions: ActionItem[];
   entries: ResearchEntry[];
   lastUpdated?: string;
+  visualStatus?: "active" | "hidden" | "archived";
 }
 
 export interface TopicReference {
