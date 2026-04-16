@@ -30,6 +30,8 @@ export interface Finding {
   status: EntryStatus;
   createdAt?: string;
   origin: ItemOrigin;
+  /** IDs de fuentes relacionadas con este hallazgo */
+  sourceIds?: string[];
 }
 
 export interface ActionItem {

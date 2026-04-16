@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-15T19:10:41.357Z",
+  "generatedAt": "2026-04-16T14:53:42.587Z",
   "sourcePath": "C:\\Users\\pedro\\git\\visor_researches\\VisorInvestigaciones\\data\\sample\\research",
   "stats": {
     "lineCount": 3,
@@ -87,14 +87,14 @@
           "entityId": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline"
         },
         {
-          "type": "source",
-          "lineSlug": "gemma-openclaw",
-          "entityId": "gemma-openclaw--source-3"
-        },
-        {
           "type": "line",
           "lineSlug": "gemma-domotica-openclaw",
           "entityId": "gemma-domotica-openclaw"
+        },
+        {
+          "type": "source",
+          "lineSlug": "gemma-openclaw",
+          "entityId": "gemma-openclaw--source-3"
         }
       ]
     },
@@ -850,6 +850,11 @@
       ],
       "references": [
         {
+          "type": "source",
+          "lineSlug": "gemma-domotica-openclaw",
+          "entityId": "gemma-domotica-openclaw--source-1"
+        },
+        {
           "type": "finding",
           "lineSlug": "gemma-openclaw",
           "entryId": "gemma-openclaw--legacy-snapshot",
@@ -860,11 +865,6 @@
           "lineSlug": "gemma-openclaw",
           "entryId": "gemma-openclaw--legacy-snapshot",
           "entityId": "gemma-openclaw--legacy-snapshot"
-        },
-        {
-          "type": "source",
-          "lineSlug": "gemma-domotica-openclaw",
-          "entityId": "gemma-domotica-openclaw--source-1"
         }
       ]
     },
@@ -1141,13 +1141,13 @@
       "references": [
         {
           "type": "source",
-          "lineSlug": "gemma-openclaw",
-          "entityId": "gemma-openclaw--source-3"
+          "lineSlug": "gemma-domotica-openclaw",
+          "entityId": "gemma-domotica-openclaw--source-2"
         },
         {
           "type": "source",
-          "lineSlug": "gemma-domotica-openclaw",
-          "entityId": "gemma-domotica-openclaw--source-2"
+          "lineSlug": "gemma-openclaw",
+          "entityId": "gemma-openclaw--source-3"
         }
       ]
     },
@@ -1394,7 +1394,8 @@
           ],
           "status": "validated",
           "createdAt": "2026-04-12T16:40:00.000Z",
-          "origin": "structured"
+          "origin": "structured",
+          "sourceIds": []
         },
         {
           "id": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline--finding-1",
@@ -1412,7 +1413,8 @@
           ],
           "status": "validated",
           "createdAt": "2026-04-10T10:15:00.000Z",
-          "origin": "structured"
+          "origin": "structured",
+          "sourceIds": []
         },
         {
           "id": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline--finding-2",
@@ -1430,7 +1432,8 @@
           ],
           "status": "active",
           "createdAt": "2026-04-10T10:15:00.000Z",
-          "origin": "structured"
+          "origin": "structured",
+          "sourceIds": []
         }
       ],
       "actions": [
@@ -1512,7 +1515,8 @@
               ],
               "status": "validated",
               "createdAt": "2026-04-12T16:40:00.000Z",
-              "origin": "structured"
+              "origin": "structured",
+              "sourceIds": []
             }
           ],
           "actions": [
@@ -1582,7 +1586,8 @@
               ],
               "status": "validated",
               "createdAt": "2026-04-10T10:15:00.000Z",
-              "origin": "structured"
+              "origin": "structured",
+              "sourceIds": []
             },
             {
               "id": "market-mapping--2026-04-10T10-15-00Z--competitive-baseline--finding-2",
@@ -1600,7 +1605,8 @@
               ],
               "status": "active",
               "createdAt": "2026-04-10T10:15:00.000Z",
-              "origin": "structured"
+              "origin": "structured",
+              "sourceIds": []
             }
           ],
           "actions": [
@@ -1623,281 +1629,8 @@
           "origin": "structured"
         }
       ],
-      "lastUpdated": "2026-04-15T04:48:34.897Z",
-      "visualStatus": "active"
-    },
-    {
-      "slug": "gemma-openclaw",
-      "title": "Gemma OpenClaw",
-      "description": "Explorar como organizar investigaciones largas generadas con Gema para que queden reutilizables, auditables y faciles de continuar.",
-      "strategyMarkdown": "# Gemma OpenClaw\n\nExplorar como organizar investigaciones largas generadas con Gema para que queden reutilizables, auditables y faciles de continuar.\n\n## Preguntas activas\n\n- como separar estrategia de ejecucion diaria\n- como distinguir hechos, hipotesis y proximas acciones\n- como reducir duplicados y ruido sin IA compleja en la V1\n",
-      "tags": [
-        "auditables",
-        "aunque",
-        "base",
-        "basica",
-        "benchmark",
-        "cliente",
-        "contexto",
-        "continuar"
-      ],
-      "status": "unknown",
-      "priority": "unknown",
-      "origins": [
-        "legacy"
-      ],
-      "sources": [
-        {
-          "id": "gemma-openclaw--source-1",
-          "lineSlug": "gemma-openclaw",
-          "title": "Conversaciones operativas internas sobre como Gema produce resultados.",
-          "tags": [
-            "conversaciones",
-            "internas",
-            "operativas",
-            "produce",
-            "resultados"
-          ],
-          "kind": "other",
-          "origin": "legacy"
-        },
-        {
-          "id": "gemma-openclaw--source-2",
-          "lineSlug": "gemma-openclaw",
-          "title": "Notas de producto sobre visor, indexado local, timeline y filtros.",
-          "tags": [
-            "filtros",
-            "indexado",
-            "notas",
-            "producto",
-            "timeline"
-          ],
-          "kind": "other",
-          "origin": "legacy"
-        },
-        {
-          "id": "gemma-openclaw--source-3",
-          "lineSlug": "gemma-openclaw",
-          "title": "Benchmark informal de herramientas de knowledge base personales y research notebooks.",
-          "tags": [
-            "base",
-            "benchmark",
-            "herramientas",
-            "informal",
-            "knowledge"
-          ],
-          "kind": "other",
-          "origin": "legacy"
-        }
-      ],
-      "findings": [
-        {
-          "id": "gemma-openclaw--finding-1",
-          "lineSlug": "gemma-openclaw",
-          "title": "El valor principal no esta en renderizar markdown sino en navegar entidades con ",
-          "summary": "El valor principal no esta en renderizar markdown sino en navegar entidades con contexto temporal.",
-          "tags": [
-            "contexto",
-            "entidades",
-            "markdown",
-            "navegar",
-            "principal"
-          ],
-          "topicHints": [
-            "entidades",
-            "markdown",
-            "navegar",
-            "principal"
-          ],
-          "status": "validated",
-          "origin": "legacy",
-          "entryId": "gemma-openclaw--legacy-snapshot"
-        },
-        {
-          "id": "gemma-openclaw--finding-2",
-          "lineSlug": "gemma-openclaw",
-          "title": "Mantener un indice materializado simplifica mucho la UI local y evita inferencia",
-          "summary": "Mantener un indice materializado simplifica mucho la UI local y evita inferencias frágiles en cliente.",
-          "tags": [
-            "cliente",
-            "evita",
-            "fragiles",
-            "indice",
-            "inferencias"
-          ],
-          "topicHints": [
-            "evita",
-            "indice",
-            "mantener",
-            "materializado"
-          ],
-          "status": "validated",
-          "origin": "legacy",
-          "entryId": "gemma-openclaw--legacy-snapshot"
-        },
-        {
-          "id": "gemma-openclaw--finding-3",
-          "lineSlug": "gemma-openclaw",
-          "title": "Tags, estado y prioridad merecen formar parte del modelo interno desde el princi",
-          "summary": "Tags, estado y prioridad merecen formar parte del modelo interno desde el principio aunque la heuristica inicial sea basica.",
-          "tags": [
-            "aunque",
-            "basica",
-            "estado",
-            "formar",
-            "heuristica"
-          ],
-          "topicHints": [
-            "estado",
-            "formar",
-            "interno",
-            "merecen"
-          ],
-          "status": "validated",
-          "origin": "legacy",
-          "entryId": "gemma-openclaw--legacy-snapshot"
-        },
-        {
-          "id": "gemma-openclaw--finding-4",
-          "lineSlug": "gemma-openclaw",
-          "title": "Los temas repetidos mas utiles suelen salir de hallazgos y acciones, no solo de ",
-          "summary": "Los temas repetidos mas utiles suelen salir de hallazgos y acciones, no solo de los titulos de informes.",
-          "tags": [
-            "informes",
-            "repetidos",
-            "salir",
-            "solo",
-            "suelen"
-          ],
-          "topicHints": [
-            "repetidos",
-            "salir",
-            "solo",
-            "suelen"
-          ],
-          "status": "validated",
-          "origin": "legacy",
-          "entryId": "gemma-openclaw--legacy-snapshot"
-        }
-      ],
-      "actions": [],
-      "entries": [
-        {
-          "id": "gemma-openclaw--legacy-snapshot",
-          "lineSlug": "gemma-openclaw",
-          "slug": "legacy-snapshot",
-          "title": "Legacy snapshot",
-          "summary": "Entrada sintetica generada desde README.md, findings.md y sources.md.",
-          "summaryMarkdown": "# Hallazgos\n\n- El valor principal no esta en renderizar markdown sino en navegar entidades con contexto temporal.\n- Mantener un indice materializado simplifica mucho la UI local y evita inferencias frágiles en cliente.\n- Tags, estado y prioridad merecen formar parte del modelo interno desde el principio aunque la heuristica inicial sea basica.\n- Los temas repetidos mas utiles suelen salir de hallazgos y acciones, no solo de los titulos de informes.",
-          "timestamp": "2026-04-15T04:48:34.891Z",
-          "year": "2026",
-          "tags": [
-            "activas",
-            "auditables",
-            "aunque",
-            "base",
-            "basica"
-          ],
-          "status": "active",
-          "priority": "unknown",
-          "sources": [],
-          "findings": [
-            {
-              "id": "gemma-openclaw--finding-1",
-              "lineSlug": "gemma-openclaw",
-              "title": "El valor principal no esta en renderizar markdown sino en navegar entidades con ",
-              "summary": "El valor principal no esta en renderizar markdown sino en navegar entidades con contexto temporal.",
-              "tags": [
-                "contexto",
-                "entidades",
-                "markdown",
-                "navegar",
-                "principal"
-              ],
-              "topicHints": [
-                "entidades",
-                "markdown",
-                "navegar",
-                "principal"
-              ],
-              "status": "validated",
-              "origin": "legacy",
-              "entryId": "gemma-openclaw--legacy-snapshot"
-            },
-            {
-              "id": "gemma-openclaw--finding-2",
-              "lineSlug": "gemma-openclaw",
-              "title": "Mantener un indice materializado simplifica mucho la UI local y evita inferencia",
-              "summary": "Mantener un indice materializado simplifica mucho la UI local y evita inferencias frágiles en cliente.",
-              "tags": [
-                "cliente",
-                "evita",
-                "fragiles",
-                "indice",
-                "inferencias"
-              ],
-              "topicHints": [
-                "evita",
-                "indice",
-                "mantener",
-                "materializado"
-              ],
-              "status": "validated",
-              "origin": "legacy",
-              "entryId": "gemma-openclaw--legacy-snapshot"
-            },
-            {
-              "id": "gemma-openclaw--finding-3",
-              "lineSlug": "gemma-openclaw",
-              "title": "Tags, estado y prioridad merecen formar parte del modelo interno desde el princi",
-              "summary": "Tags, estado y prioridad merecen formar parte del modelo interno desde el principio aunque la heuristica inicial sea basica.",
-              "tags": [
-                "aunque",
-                "basica",
-                "estado",
-                "formar",
-                "heuristica"
-              ],
-              "topicHints": [
-                "estado",
-                "formar",
-                "interno",
-                "merecen"
-              ],
-              "status": "validated",
-              "origin": "legacy",
-              "entryId": "gemma-openclaw--legacy-snapshot"
-            },
-            {
-              "id": "gemma-openclaw--finding-4",
-              "lineSlug": "gemma-openclaw",
-              "title": "Los temas repetidos mas utiles suelen salir de hallazgos y acciones, no solo de ",
-              "summary": "Los temas repetidos mas utiles suelen salir de hallazgos y acciones, no solo de los titulos de informes.",
-              "tags": [
-                "informes",
-                "repetidos",
-                "salir",
-                "solo",
-                "suelen"
-              ],
-              "topicHints": [
-                "repetidos",
-                "salir",
-                "solo",
-                "suelen"
-              ],
-              "status": "validated",
-              "origin": "legacy",
-              "entryId": "gemma-openclaw--legacy-snapshot"
-            }
-          ],
-          "actions": [],
-          "artifacts": [],
-          "origin": "legacy"
-        }
-      ],
-      "lastUpdated": "2026-04-15T04:48:34.891Z",
-      "visualStatus": "active"
+      "lastUpdated": "2026-04-16T01:55:02.363Z",
+      "visualStatus": "hidden"
     },
     {
       "slug": "gemma-domotica-openclaw",
@@ -1989,6 +1722,7 @@
           ],
           "status": "validated",
           "origin": "legacy",
+          "sourceIds": [],
           "entryId": "gemma-domotica-openclaw--legacy-snapshot"
         },
         {
@@ -2011,6 +1745,7 @@
           ],
           "status": "active",
           "origin": "legacy",
+          "sourceIds": [],
           "entryId": "gemma-domotica-openclaw--legacy-snapshot"
         },
         {
@@ -2033,6 +1768,7 @@
           ],
           "status": "active",
           "origin": "legacy",
+          "sourceIds": [],
           "entryId": "gemma-domotica-openclaw--legacy-snapshot"
         },
         {
@@ -2055,6 +1791,7 @@
           ],
           "status": "active",
           "origin": "legacy",
+          "sourceIds": [],
           "entryId": "gemma-domotica-openclaw--legacy-snapshot"
         }
       ],
@@ -2067,7 +1804,7 @@
           "title": "Legacy snapshot",
           "summary": "Entrada sintetica generada desde README.md, findings.md y sources.md.",
           "summaryMarkdown": "# Hallazgos\n\n- Home Assistant sigue siendo la pieza mas madura para integrar dispositivos heterogeneos sin forzar lock-in.\n- OpenClaw sirve mejor como capa de investigacion, registro y seguimiento que como motor en tiempo real.\n- MQTT aparece repetidamente como protocolo puente util para desacoplar hardware y reglas.\n- Conviene separar automatizaciones criticas de experimentos exploratorios para no mezclar ruido con decisiones estables.\n\n## Riesgos observados\n\nLa sobrecarga de mantenimiento crece rapido cuando se mezclan integraciones beta con dispositivos de baja calidad.",
-          "timestamp": "2026-04-15T04:48:34.887Z",
+          "timestamp": "2026-04-16T01:55:02.359Z",
           "year": "2026",
           "tags": [
             "assistant",
@@ -2100,6 +1837,7 @@
               ],
               "status": "validated",
               "origin": "legacy",
+              "sourceIds": [],
               "entryId": "gemma-domotica-openclaw--legacy-snapshot"
             },
             {
@@ -2122,6 +1860,7 @@
               ],
               "status": "active",
               "origin": "legacy",
+              "sourceIds": [],
               "entryId": "gemma-domotica-openclaw--legacy-snapshot"
             },
             {
@@ -2144,6 +1883,7 @@
               ],
               "status": "active",
               "origin": "legacy",
+              "sourceIds": [],
               "entryId": "gemma-domotica-openclaw--legacy-snapshot"
             },
             {
@@ -2166,6 +1906,7 @@
               ],
               "status": "active",
               "origin": "legacy",
+              "sourceIds": [],
               "entryId": "gemma-domotica-openclaw--legacy-snapshot"
             }
           ],
@@ -2174,7 +1915,288 @@
           "origin": "legacy"
         }
       ],
-      "lastUpdated": "2026-04-15T04:48:34.887Z",
+      "lastUpdated": "2026-04-16T01:55:02.359Z",
+      "visualStatus": "active"
+    },
+    {
+      "slug": "gemma-openclaw",
+      "title": "Gemma OpenClaw",
+      "description": "Explorar como organizar investigaciones largas generadas con Gema para que queden reutilizables, auditables y faciles de continuar.",
+      "strategyMarkdown": "# Gemma OpenClaw\n\nExplorar como organizar investigaciones largas generadas con Gema para que queden reutilizables, auditables y faciles de continuar.\n\n## Preguntas activas\n\n- como separar estrategia de ejecucion diaria\n- como distinguir hechos, hipotesis y proximas acciones\n- como reducir duplicados y ruido sin IA compleja en la V1\n",
+      "tags": [
+        "auditables",
+        "aunque",
+        "base",
+        "basica",
+        "benchmark",
+        "cliente",
+        "contexto",
+        "continuar"
+      ],
+      "status": "unknown",
+      "priority": "unknown",
+      "origins": [
+        "legacy"
+      ],
+      "sources": [
+        {
+          "id": "gemma-openclaw--source-1",
+          "lineSlug": "gemma-openclaw",
+          "title": "Conversaciones operativas internas sobre como Gema produce resultados.",
+          "tags": [
+            "conversaciones",
+            "internas",
+            "operativas",
+            "produce",
+            "resultados"
+          ],
+          "kind": "other",
+          "origin": "legacy"
+        },
+        {
+          "id": "gemma-openclaw--source-2",
+          "lineSlug": "gemma-openclaw",
+          "title": "Notas de producto sobre visor, indexado local, timeline y filtros.",
+          "tags": [
+            "filtros",
+            "indexado",
+            "notas",
+            "producto",
+            "timeline"
+          ],
+          "kind": "other",
+          "origin": "legacy"
+        },
+        {
+          "id": "gemma-openclaw--source-3",
+          "lineSlug": "gemma-openclaw",
+          "title": "Benchmark informal de herramientas de knowledge base personales y research notebooks.",
+          "tags": [
+            "base",
+            "benchmark",
+            "herramientas",
+            "informal",
+            "knowledge"
+          ],
+          "kind": "other",
+          "origin": "legacy"
+        }
+      ],
+      "findings": [
+        {
+          "id": "gemma-openclaw--finding-1",
+          "lineSlug": "gemma-openclaw",
+          "title": "El valor principal no esta en renderizar markdown sino en navegar entidades con ",
+          "summary": "El valor principal no esta en renderizar markdown sino en navegar entidades con contexto temporal.",
+          "tags": [
+            "contexto",
+            "entidades",
+            "markdown",
+            "navegar",
+            "principal"
+          ],
+          "topicHints": [
+            "entidades",
+            "markdown",
+            "navegar",
+            "principal"
+          ],
+          "status": "validated",
+          "origin": "legacy",
+          "sourceIds": [],
+          "entryId": "gemma-openclaw--legacy-snapshot"
+        },
+        {
+          "id": "gemma-openclaw--finding-2",
+          "lineSlug": "gemma-openclaw",
+          "title": "Mantener un indice materializado simplifica mucho la UI local y evita inferencia",
+          "summary": "Mantener un indice materializado simplifica mucho la UI local y evita inferencias frágiles en cliente.",
+          "tags": [
+            "cliente",
+            "evita",
+            "fragiles",
+            "indice",
+            "inferencias"
+          ],
+          "topicHints": [
+            "evita",
+            "indice",
+            "mantener",
+            "materializado"
+          ],
+          "status": "validated",
+          "origin": "legacy",
+          "sourceIds": [],
+          "entryId": "gemma-openclaw--legacy-snapshot"
+        },
+        {
+          "id": "gemma-openclaw--finding-3",
+          "lineSlug": "gemma-openclaw",
+          "title": "Tags, estado y prioridad merecen formar parte del modelo interno desde el princi",
+          "summary": "Tags, estado y prioridad merecen formar parte del modelo interno desde el principio aunque la heuristica inicial sea basica.",
+          "tags": [
+            "aunque",
+            "basica",
+            "estado",
+            "formar",
+            "heuristica"
+          ],
+          "topicHints": [
+            "estado",
+            "formar",
+            "interno",
+            "merecen"
+          ],
+          "status": "validated",
+          "origin": "legacy",
+          "sourceIds": [],
+          "entryId": "gemma-openclaw--legacy-snapshot"
+        },
+        {
+          "id": "gemma-openclaw--finding-4",
+          "lineSlug": "gemma-openclaw",
+          "title": "Los temas repetidos mas utiles suelen salir de hallazgos y acciones, no solo de ",
+          "summary": "Los temas repetidos mas utiles suelen salir de hallazgos y acciones, no solo de los titulos de informes.",
+          "tags": [
+            "informes",
+            "repetidos",
+            "salir",
+            "solo",
+            "suelen"
+          ],
+          "topicHints": [
+            "repetidos",
+            "salir",
+            "solo",
+            "suelen"
+          ],
+          "status": "validated",
+          "origin": "legacy",
+          "sourceIds": [],
+          "entryId": "gemma-openclaw--legacy-snapshot"
+        }
+      ],
+      "actions": [],
+      "entries": [
+        {
+          "id": "gemma-openclaw--legacy-snapshot",
+          "lineSlug": "gemma-openclaw",
+          "slug": "legacy-snapshot",
+          "title": "Legacy snapshot",
+          "summary": "Entrada sintetica generada desde README.md, findings.md y sources.md.",
+          "summaryMarkdown": "# Hallazgos\n\n- El valor principal no esta en renderizar markdown sino en navegar entidades con contexto temporal.\n- Mantener un indice materializado simplifica mucho la UI local y evita inferencias frágiles en cliente.\n- Tags, estado y prioridad merecen formar parte del modelo interno desde el principio aunque la heuristica inicial sea basica.\n- Los temas repetidos mas utiles suelen salir de hallazgos y acciones, no solo de los titulos de informes.",
+          "timestamp": "2026-04-16T01:55:02.359Z",
+          "year": "2026",
+          "tags": [
+            "activas",
+            "auditables",
+            "aunque",
+            "base",
+            "basica"
+          ],
+          "status": "active",
+          "priority": "unknown",
+          "sources": [],
+          "findings": [
+            {
+              "id": "gemma-openclaw--finding-1",
+              "lineSlug": "gemma-openclaw",
+              "title": "El valor principal no esta en renderizar markdown sino en navegar entidades con ",
+              "summary": "El valor principal no esta en renderizar markdown sino en navegar entidades con contexto temporal.",
+              "tags": [
+                "contexto",
+                "entidades",
+                "markdown",
+                "navegar",
+                "principal"
+              ],
+              "topicHints": [
+                "entidades",
+                "markdown",
+                "navegar",
+                "principal"
+              ],
+              "status": "validated",
+              "origin": "legacy",
+              "sourceIds": [],
+              "entryId": "gemma-openclaw--legacy-snapshot"
+            },
+            {
+              "id": "gemma-openclaw--finding-2",
+              "lineSlug": "gemma-openclaw",
+              "title": "Mantener un indice materializado simplifica mucho la UI local y evita inferencia",
+              "summary": "Mantener un indice materializado simplifica mucho la UI local y evita inferencias frágiles en cliente.",
+              "tags": [
+                "cliente",
+                "evita",
+                "fragiles",
+                "indice",
+                "inferencias"
+              ],
+              "topicHints": [
+                "evita",
+                "indice",
+                "mantener",
+                "materializado"
+              ],
+              "status": "validated",
+              "origin": "legacy",
+              "sourceIds": [],
+              "entryId": "gemma-openclaw--legacy-snapshot"
+            },
+            {
+              "id": "gemma-openclaw--finding-3",
+              "lineSlug": "gemma-openclaw",
+              "title": "Tags, estado y prioridad merecen formar parte del modelo interno desde el princi",
+              "summary": "Tags, estado y prioridad merecen formar parte del modelo interno desde el principio aunque la heuristica inicial sea basica.",
+              "tags": [
+                "aunque",
+                "basica",
+                "estado",
+                "formar",
+                "heuristica"
+              ],
+              "topicHints": [
+                "estado",
+                "formar",
+                "interno",
+                "merecen"
+              ],
+              "status": "validated",
+              "origin": "legacy",
+              "sourceIds": [],
+              "entryId": "gemma-openclaw--legacy-snapshot"
+            },
+            {
+              "id": "gemma-openclaw--finding-4",
+              "lineSlug": "gemma-openclaw",
+              "title": "Los temas repetidos mas utiles suelen salir de hallazgos y acciones, no solo de ",
+              "summary": "Los temas repetidos mas utiles suelen salir de hallazgos y acciones, no solo de los titulos de informes.",
+              "tags": [
+                "informes",
+                "repetidos",
+                "salir",
+                "solo",
+                "suelen"
+              ],
+              "topicHints": [
+                "repetidos",
+                "salir",
+                "solo",
+                "suelen"
+              ],
+              "status": "validated",
+              "origin": "legacy",
+              "sourceIds": [],
+              "entryId": "gemma-openclaw--legacy-snapshot"
+            }
+          ],
+          "actions": [],
+          "artifacts": [],
+          "origin": "legacy"
+        }
+      ],
+      "lastUpdated": "2026-04-16T01:55:02.359Z",
       "visualStatus": "active"
     }
   ]

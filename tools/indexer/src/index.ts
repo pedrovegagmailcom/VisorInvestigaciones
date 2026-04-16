@@ -19,6 +19,7 @@ import type {
   SourceKind,
   TopicReference,
 } from "../../../shared/domain";
+import type { DebugReport, IgnoredFile, InvalidEntry, LoadedEntry, LoadedLine, UnresolvedReference } from "../../../shared/debug";
 import type { LineVisualState, UIState, VisualStatus } from "../../../shared/ui-state";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
@@ -26,6 +27,104 @@ const sampleResearchPath = path.join(repoRoot, "data", "sample", "research");
 const generatedIndexPath = path.join(repoRoot, "data", "generated", "index.json");
 const publicIndexPath = path.join(repoRoot, "web", "public", "data", "generated", "index.json");
 const uiStatePath = path.join(repoRoot, "data", "generated", "ui-state.json");
+const debugReportPath = path.join(repoRoot, "data", "generated", "debug-report.json");
+
+// Collector para diagnóstico
+class DiagnosticCollector {
+  report: DebugReport;
+  startTime: number;
+
+  constructor(sourcePath: string, isSample: boolean) {
+    this.startTime = Date.now();
+    this.report = {
+      version: 1,
+      sourcePath,
+      isSampleData: isSample,
+      generatedAt: new Date().toISOString(),
+      durationMs: 0,
+      summary: {
+        totalLines: 0,
+        totalEntries: 0,
+        totalFindings: 0,
+        totalSources: 0,
+        totalActions: 0,
+      },
+      errors: [],
+      warnings: [],
+      ignoredFiles: [],
+      loadedLines: [],
+      loadedEntries: [],
+      invalidEntries: [],
+      unresolvedReferences: [],
+      detectedFormats: {
+        legacyLines: [],
+        structuredLines: [],
+      },
+    };
+  }
+
+  finish(): DebugReport {
+    this.report.durationMs = Date.now() - this.startTime;
+    return this.report;
+  }
+
+  addError(message: string) {
+    this.report.errors.push(message);
+  }
+
+  addWarning(message: string) {
+    this.report.warnings.push(message);
+  }
+
+  addIgnoredFile(file: IgnoredFile) {
+    this.report.ignoredFiles.push(file);
+  }
+
+  addLoadedLine(line: LoadedLine) {
+    this.report.loadedLines.push(line);
+    this.report.summary.totalLines++;
+  }
+
+  addLoadedEntry(entry: LoadedEntry) {
+    this.report.loadedEntries.push(entry);
+    this.report.summary.totalEntries++;
+  }
+
+  addInvalidEntry(entry: InvalidEntry) {
+    this.report.invalidEntries.push(entry);
+  }
+
+  addUnresolvedReference(ref: UnresolvedReference) {
+    this.report.unresolvedReferences.push(ref);
+  }
+
+  addLegacyLine(slug: string) {
+    if (!this.report.detectedFormats.legacyLines.includes(slug)) {
+      this.report.detectedFormats.legacyLines.push(slug);
+    }
+  }
+
+  addStructuredLine(slug: string) {
+    if (!this.report.detectedFormats.structuredLines.includes(slug)) {
+      this.report.detectedFormats.structuredLines.push(slug);
+    }
+  }
+
+  incrementFindings(count: number) {
+    this.report.summary.totalFindings += count;
+  }
+
+  incrementSources(count: number) {
+    this.report.summary.totalSources += count;
+  }
+
+  incrementActions(count: number) {
+    this.report.summary.totalActions += count;
+  }
+}
+
+// Variable global para el collector actual
+let currentDiagnostic: DiagnosticCollector | null = null;
 
 const stopWords = new Set([
   "about",
@@ -174,6 +273,36 @@ function startApiServer() {
       return;
     }
 
+    if (req.url === "/api/debug" && req.method === "GET") {
+      try {
+        const debugContent = await fs.readFile(debugReportPath, "utf8");
+        const debugReport = JSON.parse(debugContent) as DebugReport;
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(debugReport));
+      } catch {
+        // Return current diagnostic if available, or empty report
+        const report = currentDiagnostic?.finish() ?? {
+          version: 1,
+          sourcePath: currentResearchPath ?? "unknown",
+          isSampleData: (currentResearchPath ?? "").includes("sample"),
+          generatedAt: new Date().toISOString(),
+          durationMs: 0,
+          summary: { totalLines: 0, totalEntries: 0, totalFindings: 0, totalSources: 0, totalActions: 0 },
+          errors: ["No debug report available yet"],
+          warnings: [],
+          ignoredFiles: [],
+          loadedLines: [],
+          loadedEntries: [],
+          invalidEntries: [],
+          unresolvedReferences: [],
+          detectedFormats: { legacyLines: [], structuredLines: [] },
+        };
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(report));
+      }
+      return;
+    }
+
     if (req.url === "/api/reindex" && req.method === "POST") {
       if (isIndexing) {
         res.writeHead(409, { "Content-Type": "application/json" });
@@ -287,47 +416,70 @@ function startApiServer() {
     process.stdout.write(`  POST http://127.0.0.1:${API_PORT}/api/reindex - Trigger manual reindex\n`);
     process.stdout.write(`  GET  http://127.0.0.1:${API_PORT}/api/status   - Get index status\n`);
     process.stdout.write(`  GET  http://127.0.0.1:${API_PORT}/api/ui-state - Get UI state\n`);
+    process.stdout.write(`  GET  http://127.0.0.1:${API_PORT}/api/debug    - Get debug report\n`);
     process.stdout.write(`  POST http://127.0.0.1:${API_PORT}/api/lines/{slug}/status - Update line visual status\n\n`);
   });
 }
 
 async function runIndexer(researchPath: string) {
-  const startTime = Date.now();
-  const uiState = await loadUIState();
-  const legacyLines = await loadLegacyLines(researchPath);
-  const structuredLines = await loadStructuredLines(researchPath);
-  const mergedLines = mergeLines([...legacyLines, ...structuredLines]);
-  
-  // Apply visual status from UI state to each line
-  for (const line of mergedLines) {
-    (line as ResearchLine & { visualStatus: VisualStatus }).visualStatus = getLineVisualState(uiState, line.slug);
+  const isSample = researchPath === sampleResearchPath;
+  currentDiagnostic = new DiagnosticCollector(researchPath, isSample);
+  const diag = currentDiagnostic;
+
+  try {
+    const uiState = await loadUIState();
+    const legacyLines = await loadLegacyLines(researchPath, diag);
+    const structuredLines = await loadStructuredLines(researchPath, diag);
+    const mergedLines = mergeLines([...legacyLines, ...structuredLines]);
+
+    // Apply visual status from UI state to each line
+    for (const line of mergedLines) {
+      (line as ResearchLine & { visualStatus: VisualStatus }).visualStatus = getLineVisualState(uiState, line.slug);
+    }
+
+    // Cleanup UI state for lines that no longer exist
+    await cleanupUIState(mergedLines.map(l => l.slug));
+
+    const repeatedTopics = buildRepeatedTopics(mergedLines);
+
+    const index: ResearchIndex = {
+      generatedAt: new Date().toISOString(),
+      sourcePath: researchPath,
+      stats: buildStats(mergedLines),
+      repeatedTopics,
+      lines: mergedLines,
+    };
+
+    const payload = `${JSON.stringify(index, null, 2)}\n`;
+
+    await fs.mkdir(path.dirname(generatedIndexPath), { recursive: true });
+    await fs.mkdir(path.dirname(publicIndexPath), { recursive: true });
+    await fs.writeFile(generatedIndexPath, payload, "utf8");
+    await fs.writeFile(publicIndexPath, payload, "utf8");
+
+    // Generate debug report
+    const debugReport = diag.finish();
+    await fs.writeFile(debugReportPath, JSON.stringify(debugReport, null, 2) + "\n", "utf8");
+
+    process.stdout.write(`[${new Date().toISOString()}] Index generated in ${debugReport.durationMs}ms from ${researchPath}\n`);
+    process.stdout.write(`  lines: ${index.stats.lineCount}, entries: ${index.stats.entryCount}, findings: ${index.stats.findingCount}, actions: ${index.stats.actionCount}, sources: ${index.stats.sourceCount}\n`);
+    if (debugReport.errors.length > 0) {
+      process.stdout.write(`  ⚠️  errors: ${debugReport.errors.length}\n`);
+    }
+    if (debugReport.warnings.length > 0) {
+      process.stdout.write(`  ⚠️  warnings: ${debugReport.warnings.length}\n`);
+    }
+    if (debugReport.ignoredFiles.length > 0) {
+      process.stdout.write(`  🚫 ignored: ${debugReport.ignoredFiles.length}\n`);
+    }
+
+    await updateMtimes(researchPath);
+  } catch (error) {
+    diag.addError(`Fatal error during indexing: ${error instanceof Error ? error.message : String(error)}`);
+    const debugReport = diag.finish();
+    await fs.writeFile(debugReportPath, JSON.stringify(debugReport, null, 2) + "\n", "utf8");
+    throw error;
   }
-  
-  // Cleanup UI state for lines that no longer exist
-  await cleanupUIState(mergedLines.map(l => l.slug));
-  
-  const repeatedTopics = buildRepeatedTopics(mergedLines);
-
-  const index: ResearchIndex = {
-    generatedAt: new Date().toISOString(),
-    sourcePath: researchPath,
-    stats: buildStats(mergedLines),
-    repeatedTopics,
-    lines: mergedLines,
-  };
-
-  const payload = `${JSON.stringify(index, null, 2)}\n`;
-
-  await fs.mkdir(path.dirname(generatedIndexPath), { recursive: true });
-  await fs.mkdir(path.dirname(publicIndexPath), { recursive: true });
-  await fs.writeFile(generatedIndexPath, payload, "utf8");
-  await fs.writeFile(publicIndexPath, payload, "utf8");
-
-  const duration = Date.now() - startTime;
-  process.stdout.write(`[${new Date().toISOString()}] Index generated in ${duration}ms from ${researchPath}\n`);
-  process.stdout.write(`  lines: ${index.stats.lineCount}, entries: ${index.stats.entryCount}, findings: ${index.stats.findingCount}, actions: ${index.stats.actionCount}, sources: ${index.stats.sourceCount}\n`);
-
-  await updateMtimes(researchPath);
 }
 
 async function checkForChanges(researchPath: string): Promise<boolean> {
@@ -459,13 +611,25 @@ async function resolveResearchPath() {
   return absolutePath;
 }
 
-async function loadLegacyLines(researchPath: string) {
+async function loadLegacyLines(researchPath: string, diag: DiagnosticCollector) {
   const children = await safeReadDir(researchPath);
   const lines: ResearchLine[] = [];
 
   for (const child of children) {
-    if (!child.isDirectory() || child.name === "lines") {
+    if (!child.isDirectory()) {
+      if (child.name !== ".git" && !child.name.startsWith(".")) {
+        diag.addIgnoredFile({
+          path: path.join(researchPath, child.name),
+          kind: "file",
+          reason: "unexpected_location",
+          detail: "Archivo suelto en research/ debe estar dentro de una línea",
+        });
+      }
       continue;
+    }
+
+    if (child.name === "lines") {
+      continue; // Skip structured format directory
     }
 
     const lineDir = path.join(researchPath, child.name);
@@ -474,8 +638,27 @@ async function loadLegacyLines(researchPath: string) {
     const sourcesPath = path.join(lineDir, "sources.md");
 
     if (!(await exists(readmePath)) && !(await exists(findingsPath)) && !(await exists(sourcesPath))) {
+      // Check if it might be a structured format line
+      const lineJsonPath = path.join(lineDir, "line.json");
+      if (await exists(lineJsonPath)) {
+        diag.addIgnoredFile({
+          path: lineDir,
+          kind: "directory",
+          reason: "unexpected_location",
+          detail: "Carpeta con line.json debe estar en research/lines/ para formato estructurado",
+        });
+      } else {
+        diag.addIgnoredFile({
+          path: lineDir,
+          kind: "directory",
+          reason: "unknown_line_format",
+          detail: "Carpeta sin README.md, findings.md ni sources.md (formato legado) ni line.json (formato estructurado)",
+        });
+      }
       continue;
     }
+
+    diag.addLegacyLine(child.name);
 
     const [strategyMarkdown, findingsMarkdown, sourcesMarkdown] = await Promise.all([
       readText(readmePath),
@@ -508,7 +691,7 @@ async function loadLegacyLines(researchPath: string) {
       origin: "legacy",
     };
 
-    lines.push({
+    const line: ResearchLine = {
       slug: child.name,
       title,
       description,
@@ -522,16 +705,39 @@ async function loadLegacyLines(researchPath: string) {
       actions: [],
       entries: [entry],
       lastUpdated: updatedAt,
+    };
+
+    lines.push(line);
+
+    // Register in diagnostic
+    diag.addLoadedLine({
+      slug: child.name,
+      title,
+      format: "legacy",
+      path: lineDir,
+      entryCount: 1,
+      sourceCount: sources.length,
+      findingCount: findings.length,
     });
+    diag.addLoadedEntry({
+      id: entryId,
+      lineSlug: child.name,
+      title: "Legacy snapshot",
+      path: lineDir,
+      timestamp: updatedAt,
+    });
+    diag.incrementFindings(findings.length);
+    diag.incrementSources(sources.length);
   }
 
   return lines;
 }
 
-async function loadStructuredLines(researchPath: string) {
+async function loadStructuredLines(researchPath: string, diag: DiagnosticCollector) {
   const linesRoot = path.join(researchPath, "lines");
 
   if (!(await exists(linesRoot))) {
+    diag.addWarning("No se encontró el directorio 'lines/' para formato estructurado");
     return [] as ResearchLine[];
   }
 
@@ -540,6 +746,12 @@ async function loadStructuredLines(researchPath: string) {
 
   for (const child of children) {
     if (!child.isDirectory()) {
+      diag.addIgnoredFile({
+        path: path.join(linesRoot, child.name),
+        kind: "file",
+        reason: "unexpected_location",
+        detail: "Archivo suelto en lines/ debe ser un directorio de línea",
+      });
       continue;
     }
 
@@ -548,10 +760,47 @@ async function loadStructuredLines(researchPath: string) {
     const lineJsonPath = path.join(lineDir, "line.json");
     const strategyPath = path.join(lineDir, "strategy.md");
     const sourcesPath = path.join(lineDir, "sources", "sources.json");
+
+    // Validate required files
+    if (!(await exists(lineJsonPath))) {
+      diag.addIgnoredFile({
+        path: lineDir,
+        kind: "directory",
+        reason: "missing_required_file",
+        detail: "Falta line.json en línea estructurada",
+      });
+      continue;
+    }
+
+    diag.addStructuredLine(lineSlug);
+
     const lineMeta = await readJsonFile<Record<string, unknown>>(lineJsonPath);
+
+    // Validate line.json content
+    if (!lineMeta || typeof lineMeta !== "object") {
+      diag.addError(`line.json inválido en ${lineSlug}: no es un objeto JSON válido`);
+      continue;
+    }
+
+    if (!lineMeta.title) {
+      diag.addWarning(`Línea ${lineSlug} no tiene título en line.json`);
+    }
+
     const strategyMarkdown = await readText(strategyPath);
-    const lineSources = buildStructuredSources(lineSlug, undefined, await readJsonArray(sourcesPath));
-    const entries = await loadStructuredEntries(lineDir, lineSlug);
+
+    // Check if strategy.md is missing
+    if (!strategyMarkdown.trim()) {
+      diag.addWarning(`Línea ${lineSlug} no tiene strategy.md o está vacío`);
+    }
+
+    // Check sources.json
+    const sourcesData = await readJsonArray(sourcesPath);
+    if (!sourcesData) {
+      diag.addWarning(`Línea ${lineSlug} no tiene sources/sources.json`);
+    }
+
+    const lineSources = buildStructuredSources(lineSlug, undefined, sourcesData);
+    const entries = await loadStructuredEntries(lineDir, lineSlug, diag);
     const entryFindings = entries.flatMap((entry) => entry.findings);
     const entryActions = entries.flatMap((entry) => entry.actions);
     const lastUpdated = [
@@ -559,7 +808,7 @@ async function loadStructuredLines(researchPath: string) {
       await latestTimestamp([lineJsonPath, strategyPath, sourcesPath]),
     ].filter(Boolean).sort().at(-1);
 
-    result.push({
+    const line: ResearchLine = {
       slug: lineSlug,
       title: stringValue(lineMeta?.title) ?? humanizeSlug(lineSlug),
       description: stringValue(lineMeta?.description) ?? extractDescription(strategyMarkdown) ?? "Linea estructurada sin descripcion adicional.",
@@ -573,16 +822,44 @@ async function loadStructuredLines(researchPath: string) {
       actions: entryActions,
       entries,
       lastUpdated,
+    };
+
+    result.push(line);
+
+    // Register in diagnostic
+    diag.addLoadedLine({
+      slug: lineSlug,
+      title: line.title,
+      format: "structured",
+      path: lineDir,
+      entryCount: entries.length,
+      sourceCount: lineSources.length,
+      findingCount: entryFindings.length,
     });
+    diag.incrementFindings(entryFindings.length);
+    diag.incrementSources(lineSources.length);
+    diag.incrementActions(entryActions.length);
+
+    // Register entries
+    for (const entry of entries) {
+      diag.addLoadedEntry({
+        id: entry.id,
+        lineSlug,
+        title: entry.title,
+        path: path.join(lineDir, "entries", entry.year, entry.id),
+        timestamp: entry.timestamp,
+      });
+    }
   }
 
   return result;
 }
 
-async function loadStructuredEntries(lineDir: string, lineSlug: string) {
+async function loadStructuredEntries(lineDir: string, lineSlug: string, diag: DiagnosticCollector) {
   const entriesRoot = path.join(lineDir, "entries");
 
   if (!(await exists(entriesRoot))) {
+    diag.addWarning(`Línea ${lineSlug} no tiene directorio de entradas`);
     return [] as ResearchEntry[];
   }
 
@@ -591,6 +868,25 @@ async function loadStructuredEntries(lineDir: string, lineSlug: string) {
 
   for (const year of years) {
     if (!year.isDirectory()) {
+      if (!year.name.startsWith(".")) {
+        diag.addIgnoredFile({
+          path: path.join(entriesRoot, year.name),
+          kind: "file",
+          reason: "unexpected_filename",
+          detail: "Archivo suelto en entries/, debe ser directorio de año",
+        });
+      }
+      continue;
+    }
+
+    // Validate year format
+    if (!/^\d{4}$/.test(year.name)) {
+      diag.addIgnoredFile({
+        path: path.join(entriesRoot, year.name),
+        kind: "directory",
+        reason: "unexpected_filename",
+        detail: `Nombre de año inválido: ${year.name}, debe ser YYYY`,
+      });
       continue;
     }
 
@@ -599,17 +895,61 @@ async function loadStructuredEntries(lineDir: string, lineSlug: string) {
 
     for (const entryDir of entryDirs) {
       if (!entryDir.isDirectory()) {
+        if (!entryDir.name.startsWith(".")) {
+          diag.addIgnoredFile({
+            path: path.join(yearDir, entryDir.name),
+            kind: "file",
+            reason: "unexpected_filename",
+            detail: "Archivo suelto en entries/YYYY/, debe ser directorio de entrada",
+          });
+        }
         continue;
       }
 
       const folderName = entryDir.name;
       const folderPath = path.join(yearDir, folderName);
+      const entryJsonPath = path.join(folderPath, "entry.json");
+
+      // Validate timestamp in folder name
+      const timestampMatch = folderName.match(/^(\d{4}-\d{2}-\d{2}T\d{2}[\-\:]\d{2}[\-\:]\d{2}Z)/);
+      if (!timestampMatch) {
+        diag.addInvalidEntry({
+          path: folderPath,
+          lineSlug,
+          reason: "invalid_timestamp",
+          detail: `Nombre de carpeta no contiene timestamp válido: ${folderName}`,
+        });
+        continue;
+      }
+
+      // Check required entry.json
+      if (!(await exists(entryJsonPath))) {
+        diag.addInvalidEntry({
+          path: folderPath,
+          lineSlug,
+          reason: "missing_required_file",
+          detail: "Falta entry.json",
+        });
+        continue;
+      }
+
       const [rawMeta, summaryMarkdown, findingsData, actionsData] = await Promise.all([
         readJsonFile<Record<string, unknown>>(path.join(folderPath, "entry.json")),
         readText(path.join(folderPath, "summary.md")),
         readJsonArray(path.join(folderPath, "findings.json")),
         readJsonArray(path.join(folderPath, "actions.json")),
       ]);
+
+      // Validate entry.json
+      if (!rawMeta || typeof rawMeta !== "object") {
+        diag.addInvalidEntry({
+          path: folderPath,
+          lineSlug,
+          reason: "invalid_json",
+          detail: "entry.json no es un objeto JSON válido",
+        });
+        continue;
+      }
 
       const entryId = `${lineSlug}--${folderName}`;
       const fallbackSlug = folderName.split("--").slice(1).join("--") || folderName;
@@ -712,6 +1052,7 @@ function buildLegacyFindings(lineSlug: string, markdown: string) {
       status: inferFindingStatus(item),
       createdAt: undefined,
       origin: "legacy",
+      sourceIds: [], // Formato legado no tiene referencias explícitas a fuentes
     } satisfies Finding;
   });
 }
@@ -792,6 +1133,7 @@ function buildStructuredFindings(lineSlug: string, entryId: string, data: unknow
         status: "active",
         createdAt: fallbackTimestamp,
         origin: "structured",
+        sourceIds: [],
       } satisfies Finding];
     }
 
@@ -801,6 +1143,9 @@ function buildStructuredFindings(lineSlug: string, entryId: string, data: unknow
 
     const record = item as Record<string, unknown>;
     const summary = stringValue(record.summary) ?? stringValue(record.detail) ?? stringValue(record.title) ?? `Finding ${index + 1}`;
+
+    // Extraer sourceIds si existen en el formato estructurado
+    const sourceIds = extractSourceIds(record.sourceIds) ?? extractSourceIds(record.sources) ?? [];
 
     return [{
       id: `${entryId}--finding-${index + 1}`,
@@ -814,8 +1159,17 @@ function buildStructuredFindings(lineSlug: string, entryId: string, data: unknow
       status: normalizeEntryStatus(record.status),
       createdAt: normalizeOptionalTimestamp(record.createdAt) ?? fallbackTimestamp,
       origin: "structured",
+      sourceIds,
     } satisfies Finding];
   });
+}
+
+function extractSourceIds(value: unknown): string[] | undefined {
+  if (!value) return undefined;
+  if (Array.isArray(value)) {
+    return value.filter((id): id is string => typeof id === "string" && id.length > 0);
+  }
+  return undefined;
 }
 
 function buildStructuredActions(lineSlug: string, entryId: string, data: unknown) {

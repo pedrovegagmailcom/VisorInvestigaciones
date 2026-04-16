@@ -23,6 +23,7 @@ import type {
 import { entryStatuses, lineStatuses, priorities } from "@shared/domain";
 import type { VisualStatus } from "@shared/ui-state";
 
+import { DebugPanel } from "./components/DebugPanel";
 import { LineCard } from "./components/LineCard";
 import { MarkdownBlock } from "./components/MarkdownBlock";
 import { Panel } from "./components/Panel";
@@ -205,6 +206,9 @@ export function App() {
               <NavLink className={({ isActive }) => navClassName(isActive)} to="/">
                 Lineas
               </NavLink>
+              <NavLink className={({ isActive }) => navClassName(isActive)} to="/debug">
+                🔧 Debug
+              </NavLink>
             </nav>
           </div>
         </header>
@@ -235,6 +239,7 @@ export function App() {
 
             <Routes>
               <Route path="/" element={<HomePage index={index} />} />
+              <Route path="/debug" element={<DebugPage />} />
               <Route path="/lines/:lineSlug" element={<LinePage index={index} />} />
               <Route path="/lines/:lineSlug/entries/:entryId" element={<EntryPage index={index} />} />
               <Route path="*" element={<Navigate to="/" replace />} />
@@ -243,6 +248,19 @@ export function App() {
         ) : null}
       </div>
     </HashRouter>
+  );
+}
+
+function DebugPage() {
+  return (
+    <main className="content-stack">
+      <div className="breadcrumbs">
+        <Link to="/">Líneas</Link>
+        <span>/</span>
+        <span>Diagnóstico</span>
+      </div>
+      <DebugPanel />
+    </main>
   );
 }
 
@@ -499,6 +517,8 @@ function LinePage({ index }: { index: ResearchIndex }) {
   const visibleSources = buildLineSourcesForView(line, selectedTopic).filter((source) => {
     return matchesQuery(`${source.title} ${source.note ?? ""}`, query);
   });
+  // Todas las fuentes disponibles para la línea (para búsqueda de fuentes relacionadas en hallazgos)
+  const allSources = [...line.sources, ...line.entries.flatMap((e) => e.sources)];
   const hasActiveFilters = query || year !== "all" || status !== "all" || selectedTopic;
 
   return (
@@ -564,7 +584,7 @@ function LinePage({ index }: { index: ResearchIndex }) {
 
         <div className="content-stack">
           <Panel title="Hallazgos" subtitle={`${visibleFindings.length} hallazgos visibles`}>
-            <FindingList findings={visibleFindings.slice(0, 12)} topicId={selectedTopic?.id} />
+            <FindingList findings={visibleFindings.slice(0, 12)} availableSources={allSources} topicId={selectedTopic?.id} />
           </Panel>
 
           <Panel title="Acciones" subtitle={`${visibleActions.length} acciones visibles`}>
@@ -687,6 +707,8 @@ function EntryPage({ index }: { index: ResearchIndex }) {
   const visibleSources = (entry.sources.length > 0 ? entry.sources : line.sources).filter((source) => {
     return !selectedTopic || topicMatchesEntity(selectedTopic, line.slug, source.id, source.entryId ?? entry.id);
   });
+  // Todas las fuentes disponibles para búsqueda (entry + línea)
+  const allSources = [...line.sources, ...entry.sources];
   const visibleFindings = entry.findings.filter((finding) => {
     return !selectedTopic || topicMatchesEntity(selectedTopic, line.slug, finding.id, finding.entryId);
   });
@@ -769,7 +791,7 @@ function EntryPage({ index }: { index: ResearchIndex }) {
 
         <div className="content-stack">
           <Panel title="Hallazgos" subtitle={`${visibleFindings.length} hallazgos visibles`}>
-            <FindingList findings={visibleFindings} topicId={selectedTopic?.id} />
+            <FindingList findings={visibleFindings} availableSources={allSources} topicId={selectedTopic?.id} />
           </Panel>
 
           <Panel title="Acciones" subtitle={`${visibleActions.length} acciones visibles`}>
@@ -912,40 +934,100 @@ function SourceList({ sources }: { sources: Source[] }) {
   );
 }
 
-function FindingList({ findings, topicId }: { findings: Finding[]; topicId?: string }) {
+function FindingList({ findings, availableSources, topicId }: { findings: Finding[]; availableSources: Source[]; topicId?: string }) {
   if (findings.length === 0) {
     return <p className="muted">No hay hallazgos registrados.</p>;
   }
 
+  // Crear mapa de fuentes para búsqueda rápida
+  const sourcesMap = new Map(availableSources.map(s => [s.id, s]));
+
   return (
     <div className="detail-list">
-      {findings.map((finding, index) => (
-        <details className="detail-card" key={finding.id} open={index === 0}>
-          <summary className="detail-card__summary">
-            <div>
-              <strong>{finding.title}</strong>
-              <span className="detail-card__hint">Expandir para ver detalle</span>
-            </div>
-            <div className="badges">
-              <span className="badge">{finding.status}</span>
-              {finding.origin ? <span className="badge badge--soft">{finding.origin}</span> : null}
-            </div>
-          </summary>
-          <div className="detail-card__body">
-            <p>{finding.summary}</p>
-            {finding.detail ? <p>{finding.detail}</p> : null}
-            {finding.topicHints.length > 0 ? <TagList label="Temas" tags={finding.topicHints} /> : null}
-            {finding.tags.length > 0 ? <TagList label="Tags" tags={finding.tags} /> : null}
-            {finding.entryId ? (
-              <div className="detail-actions">
-                <Link className="button button--ghost button--small" to={entryPath(finding.lineSlug, finding.entryId, topicId ? { topic: topicId } : undefined)}>
-                  Ir a la entrada
-                </Link>
+      {findings.map((finding, index) => {
+        // Obtener fuentes relacionadas
+        const relatedSources = (finding.sourceIds ?? [])
+          .map(id => sourcesMap.get(id))
+          .filter((s): s is Source => s !== undefined);
+
+        const hasRelatedSources = relatedSources.length > 0;
+
+        return (
+          <details className="detail-card" key={finding.id} open={index === 0}>
+            <summary className="detail-card__summary">
+              <div>
+                <strong>{finding.title}</strong>
+                <span className="detail-card__hint">
+                  {hasRelatedSources
+                    ? `${relatedSources.length} fuente${relatedSources.length > 1 ? 's' : ''} relacionada${relatedSources.length > 1 ? 's' : ''}`
+                    : finding.entryId
+                      ? "Ver entrada para contexto completo"
+                      : "Sin fuentes relacionadas"}
+                </span>
               </div>
-            ) : null}
-          </div>
-        </details>
-      ))}
+              <div className="badges">
+                <span className="badge">{finding.status}</span>
+                {finding.origin ? <span className="badge badge--soft">{finding.origin}</span> : null}
+              </div>
+            </summary>
+            <div className="detail-card__body">
+              <p>{finding.summary}</p>
+              {finding.detail ? <p>{finding.detail}</p> : null}
+
+              {/* Fuentes relacionadas */}
+              <div className="finding-sources">
+                <h4 className="finding-sources__title">
+                  {hasRelatedSources ? "📚 Fuentes relacionadas" : "📚 Fuentes relacionadas"}
+                </h4>
+                {hasRelatedSources ? (
+                  <ul className="finding-sources__list">
+                    {relatedSources.map(source => (
+                      <li key={source.id} className="finding-sources__item">
+                        {source.url ? (
+                          <a
+                            href={source.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="finding-sources__link"
+                            title="Abrir fuente externa"
+                          >
+                            {source.title}
+                          </a>
+                        ) : (
+                          <span className="finding-sources__name">{source.title}</span>
+                        )}
+                        {source.note && <span className="finding-sources__note">{source.note}</span>}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="finding-sources__empty">
+                    Este hallazgo no tiene fuentes vinculadas.
+                    {finding.origin === "legacy" && " (Formato legado no soporta vinculación explícita)"}
+                  </p>
+                )}
+              </div>
+
+              {finding.topicHints.length > 0 ? <TagList label="Temas" tags={finding.topicHints} /> : null}
+              {finding.tags.length > 0 ? <TagList label="Tags" tags={finding.tags} /> : null}
+
+              {/* Navegación */}
+              <div className="detail-actions">
+                {finding.entryId ? (
+                  <Link
+                    className="button button--primary button--small"
+                    to={entryPath(finding.lineSlug, finding.entryId, topicId ? { topic: topicId } : undefined)}
+                  >
+                    📄 Ver entrada completa
+                  </Link>
+                ) : (
+                  <span className="muted">Sin entrada asociada</span>
+                )}
+              </div>
+            </div>
+          </details>
+        );
+      })}
     </div>
   );
 }

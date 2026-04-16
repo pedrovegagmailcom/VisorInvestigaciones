@@ -72,6 +72,23 @@ Notas:
 - el parser acepta `findings.json`, `actions.json` y `sources.json` tanto como array directo como con envoltorios del tipo `{ findings: [...] }`, `{ actions: [...] }` o `{ items: [...] }`
 - el timestamp del nombre de carpeta acepta `T10:15:00Z` y tambien la variante segura para Windows `T10-15-00Z`
 
+### Relaciones entre entidades
+
+**Hallazgos y Fuentes:**
+
+El modelo `Finding` incluye `sourceIds: string[]` para vincular hallazgos con sus fuentes:
+
+```json
+{
+  "title": "Nombre del hallazgo",
+  "summary": "Descripción del hallazgo",
+  "sourceIds": ["source-1", "source-2"]
+}
+```
+
+- **Formato estructurado**: Puedes incluir `sourceIds` en `findings.json` para vincular explícitamente
+- **Formato legado**: Los hallazgos no tienen vinculación (array vacío). El indexador no intenta inferir relaciones para evitar datos falsos.
+
 ## Modelo normalizado
 
 El indexador genera un unico indice en:
@@ -376,6 +393,70 @@ sudo systemctl restart visor-investigaciones
 # Detener
 sudo systemctl stop visor-investigaciones
 ```
+
+## Panel de Diagnóstico (Debug)
+
+El visor incluye un panel de diagnóstico completo para entender qué se está indexando y por qué ciertos archivos pueden no aparecer.
+
+### Acceso
+
+Haz clic en **"🔧 Debug"** en el header o navega a `/#/debug`.
+
+### Qué muestra el panel
+
+#### 1. Resumen (Overview)
+- **Ruta indexada**: Muestra la ruta real que se está indexando
+- **Tipo de datos**: Indica si son datos de ejemplo o reales
+- **Estadísticas**: Líneas, entradas, hallazgos, fuentes y acciones
+- **Formatos detectados**: Cuántas líneas legacy vs estructuradas
+- **Errores y warnings**: Lista filtrable por severidad
+
+#### 2. Archivos ignorados (Files)
+Muestra archivos que el indexador ha detectado pero no ha cargado, con el motivo exacto:
+
+| Razón | Significado |
+|-------|-------------|
+| `unexpected_filename` | Nombre de archivo no esperado |
+| `unexpected_location` | Archivo en ubicación incorrecta |
+| `missing_required_file` | Falta archivo requerido (ej: line.json) |
+| `invalid_json` | JSON mal formado |
+| `invalid_schema` | Estructura JSON incorrecta |
+| `invalid_timestamp` | Timestamp en nombre de carpeta inválido |
+| `unknown_line_format` | Carpeta no reconocida como línea válida |
+
+#### 3. Entradas (Entries)
+- **Entradas cargadas**: Lista de entradas válidas encontradas
+- **Entradas inválidas**: Entradas con problemas (falta entry.json, timestamp inválido, etc.)
+
+#### 4. Referencias (References)
+Muestra referencias rotas entre entidades (hallazgos que referencian fuentes inexistentes, etc.).
+
+### Archivo de debug
+
+El reporte completo se guarda en:
+```
+data/generated/debug-report.json
+```
+
+Contiene toda la información de diagnóstico en formato JSON.
+
+### API de debug
+
+```bash
+# Obtener reporte de debug
+GET http://127.0.0.1:3456/api/debug
+```
+
+Respuesta incluye:
+- `sourcePath`: Ruta real indexada
+- `isSampleData`: Si es datos de ejemplo
+- `durationMs`: Tiempo de indexación
+- `summary`: Conteos de entidades
+- `errors`/`warnings`: Problemas encontrados
+- `ignoredFiles`: Archivos ignorados con razones
+- `loadedLines`/`loadedEntries`: Lo que se cargó
+- `invalidEntries`: Lo que no se pudo cargar
+- `detectedFormats`: Legacy vs estructurado
 
 ### API de gestión de líneas
 
